@@ -9,13 +9,14 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import axios from "axios";
+import {API_URL, API_KEY} from '@env';
 
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {
-    const url = 'https://masurao.fr/api/employees/login';
+    const url = API_URL + '/login';
     const headers = {
         'accept': 'application/json',
-        'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
+        'X-Group-Authorization': API_KEY,
         'Content-Type': 'application/json',
     };
     const data = {

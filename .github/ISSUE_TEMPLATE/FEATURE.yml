@@ -17,8 +17,8 @@ body:
       description: What type of feature is this?
       multiple: true
       options:
-        - UI
-        - UX
+        - Back
+        - Front
         - Other
     validations:
       required: true

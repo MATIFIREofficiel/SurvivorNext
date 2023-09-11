@@ -9,20 +9,16 @@ import { Ionicons } from '@expo/vector-icons';
 export default function DashboardPage() {
 
   const [isModalVisible, setModalVisible] = useState(false);
-  // ref
   const bottomSheetRef = useRef(null);
 
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
-    // Fermez la modal lorsque vous cliquez en dehors d'elle
     bottomSheetRef.current.close();
   }, []);
 
   const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
-  // variables
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
-  // callbacks
   const handleSheetChanges = useCallback((index) => {
     console.log('handleSheetChanges', index);
   }, []);
@@ -49,7 +45,6 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
-  // renders
   return (
     <View style={styles.container}>
       {
@@ -92,7 +87,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   overlay: {
-    backgroundColor: '#E5E7E6', // Overlay semi-transparent
+    backgroundColor: '#E5E7E6',
     position: 'absolute',
     top: 0,
     bottom: 0,

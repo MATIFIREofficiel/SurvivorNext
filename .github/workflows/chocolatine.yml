@@ -6,7 +6,7 @@ on:
       - 'ga-ignore-*'
 
 env:
-  MIRROR_URL: git@github.com:EpitechPromo2026/B-SVR-500-NAN-5-1-survivor-matthias.gaste.git
+  MIRROR_URL: git@github.com:EpitechPromo2026/B-SVR-500-NAN-5-1-survivornext-matteo.turpault.git
 
 jobs:
   push_to_mirror:

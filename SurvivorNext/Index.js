@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 export default function ConnectionChecker()
 {
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isSignedIn, setIsSignedIn] = useState(true);
     const [ApiUser, setApiUser] = useState({});
 
     if (isSignedIn) {

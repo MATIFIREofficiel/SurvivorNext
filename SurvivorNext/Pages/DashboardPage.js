@@ -17,7 +17,7 @@ export default function DashboardPage() {
     bottomSheetRef.current.close();
   }, []);
 
-  const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
+  const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
   // variables
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
@@ -67,8 +67,8 @@ export default function DashboardPage() {
       >
         <FlatList
           data={widgets}
+          refreshing={true}
           renderItem={renderItem}
-          contentContainerStyle={styles.contentContainer}
           numColumns={2}
           columnWrapperStyle={{ justifyContent: 'space-between' }}
         >
@@ -83,10 +83,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: '#E5E7E6',
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
   },
 
   itemContainer: {

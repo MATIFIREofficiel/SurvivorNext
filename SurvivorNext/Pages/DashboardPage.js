@@ -30,7 +30,9 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <Widget />
+        <TouchableOpacity onPress={() => { console.log(item); }}>
+          <Widget />
+        </TouchableOpacity>
       </View>
     );
   }, []);
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     width: '50%',
-    padding: 14,
+    padding: 12,
   },
   overlay: {
     flex: 1,

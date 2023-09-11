@@ -9,7 +9,7 @@ import DeveloppementScreen from './DeveloppementScreen.js';
 
 import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet } from 'react-native';
-import WeatherWidget from '../Components/WeatherWidget.js';
+import DashboardPage from './DashboardPage.js';
 
 const Drawer = createDrawerNavigator();
 
@@ -98,7 +98,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 />
               ),
             }} />
-        <Drawer.Screen name="Widgets" component={DeveloppementScreen}
+        <Drawer.Screen name="Dashboard" component={DashboardPage}
           options={
             {
               drawerIcon: ({ focused, size }) => (

@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, useWindowDimensions, TextInput } from "react-native";
 import axios from "axios";
 import React, { useState, useEffect, route } from 'react';
+import {API_URL, API_KEY, AUTH} from '@env';
 
 function Item({ item, onPress}) {
 
@@ -8,12 +9,12 @@ function Item({ item, onPress}) {
     <TouchableOpacity onPress={onPress} style={styles.item}>
       <Image
         source={{
-          uri: `https://masurao.fr/api/employees/${item.id}/image`,
+          uri: API_URL + `/${item.id}/image`,
           method: 'GET',
           headers: {
             accept: 'application/json',
-            'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzQsImVtYWlsIjoib2xpdmVyLmxld2lzQG1hc3VyYW8uanAiLCJuYW1lIjoiT2xpdmVyIiwic3VybmFtZSI6Ikxld2lzIiwiZXhwIjoxNjk1NzI2MzMwfQ.kfZoJqTF7H6Wg1egKTyA8W3r-pucZvkmvBAP0v_Fb6k',
+            'X-Group-Authorization': API_KEY,
+            Authorization: 'Bearer ' + AUTH,
           },
         }}
         style={styles.image} />
@@ -29,11 +30,11 @@ export default function TrombinoscopeScreen({ navigation, route }) {
 
   const getListEmployeesID = async () => {
 
-    const url = 'https://masurao.fr/api/employees';
+    const url = API_URL;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzQsImVtYWlsIjoib2xpdmVyLmxld2lzQG1hc3VyYW8uanAiLCJuYW1lIjoiT2xpdmVyIiwic3VybmFtZSI6Ikxld2lzIiwiZXhwIjoxNjk1NzI2MzMwfQ.kfZoJqTF7H6Wg1egKTyA8W3r-pucZvkmvBAP0v_Fb6k'
+      'X-Group-Authorization': API_KEY,
+      'Authorization': 'Bearer ' + AUTH,
     };
 
     try {

@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Infos from '../Components/Infos';
+import {API_URL, API_KEY, AUTH} from '@env';
 
 export default function ProfileDetailScreen({ navigation, route }) {
 
@@ -10,10 +11,10 @@ export default function ProfileDetailScreen({ navigation, route }) {
   const [infos, setinfos] = useState([]);
 
   const getUserInfo = async () => {
-    const url = `https://masurao.fr/api/employees/${route.params[1]}`;
+    const url = API_URL + `/${route.params[1]}`;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
+      'X-Group-Authorization': API_KEY,
       'Authorization': 'Bearer ' + access_token
     };
 
@@ -32,12 +33,12 @@ export default function ProfileDetailScreen({ navigation, route }) {
       <View style={styles.container}>
         <Image
           source={{
-            uri: `https://masurao.fr/api/employees/${infos.id}/image`,
+            uri: API_URL + `/${infos.id}/image`,
             method: 'GET',
             headers: {
               accept: 'application/json',
-              'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzQsImVtYWlsIjoib2xpdmVyLmxld2lzQG1hc3VyYW8uanAiLCJuYW1lIjoiT2xpdmVyIiwic3VybmFtZSI6Ikxld2lzIiwiZXhwIjoxNjk1NzI2MzMwfQ.kfZoJqTF7H6Wg1egKTyA8W3r-pucZvkmvBAP0v_Fb6k',
+              'X-Group-Authorization': API_KEY,
+              Authorization: 'Bearer ' + AUTH,
             },
           }}
           style={styles.image} />

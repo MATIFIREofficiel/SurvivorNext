@@ -1,8 +1,9 @@
-import { Button, StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function DashboardPage() {
@@ -54,10 +55,9 @@ export default function DashboardPage() {
       {
         isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
       }
-      <Button
-        title='+'
-        onPress={handlePresentModalPress}>
-      </Button>
+      <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
+        <Ionicons name="add-circle-outline" size={60} color="#4C96EB" />
+      </TouchableOpacity>
       <BottomSheet
         ref={bottomSheetRef}
         index={-1}
@@ -92,12 +92,16 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   overlay: {
-    flex: 1,
     backgroundColor: '#E5E7E6', // Overlay semi-transparent
     position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  button: {
+    position: 'absolute',
+    bottom: 40,
+    right: 20,
   },
 });

@@ -65,6 +65,8 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 style={styles.TextInput}
                 placeholder="Email."
                 placeholderTextColor="#003f5c"
+                textAlign="center"
+                caretHidden={true}
                 value={email}
                 onChangeText={setEmail}
                 />
@@ -74,6 +76,8 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 style={styles.TextInput}
                 placeholder="Password."
                 placeholderTextColor="#003f5c"
+                textAlign="center"
+                caretHidden={true}
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
@@ -126,13 +130,11 @@ const styles = StyleSheet.create({
         width: "70%",
         height: 45,
         marginBottom: 20,
-        alignItems: "center",
     },
     TextInput: {
         height: 50,
         flex: 1,
         padding: 10,
-        marginLeft: 10,
     },
     forgot_button: {
         height: 30,

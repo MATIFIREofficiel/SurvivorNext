@@ -17,7 +17,7 @@ function Item({ item, onPress, access_token}) {
           },
         }}
         style={styles.image} />
-      <Text style={styles.item}> {item.name} {item.surname} </Text>
+      <Text style={styles.text}> {item.name} {item.surname} </Text>
     </TouchableOpacity>
   );
 }
@@ -70,26 +70,28 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   };
 
   return (
-    <View>
+    <View style={styles.homePage}>
       <TextInput style={styles.searchText}
         placeholder="Search by name or username"
         value={search}
         onChangeText={filterEmployee}
         defaultValue=''/>
-      <View style={styles.item}>
-        <FlatList
-          refreshing={true}
-          data={dataSearch}
-          renderItem={renderItem}
-          numColumns={3}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <FlatList
+        refreshing={true}
+        data={dataSearch}
+        renderItem={renderItem}
+        numColumns={3}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  homePage: {
+    flex: 1,
+    alignItems: 'center',
+  },
   searchText: {
     backgroundColor: 'lightgray',
     borderRadius: 20,
@@ -103,12 +105,16 @@ const styles = StyleSheet.create({
   },
   text: {
     width: 100,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 8
   },
   image: {
     borderRadius: 40,
     width: 100,
     height: 100,
-    margin: 10
+    marginRight: 10,
+    marginLeft: 10,
+    marginTop: 10,
+    marginBottom: 2,
   },
 });

@@ -46,11 +46,18 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [isError, setIsError] = useState(false);
+    const [maskedPassword, setMaskedPassword] = useState('');
 
     const handleLoginPress = () => {
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
         setEmail("");
         setPassword("");
+    };
+
+    const handlePasswordChange = (text) => {
+        setPassword(text);
+        const maskedText = '*'.repeat(text.length);
+        setMaskedPassword(maskedText);
     };
 
     return (
@@ -75,10 +82,9 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                secureTextEntry={true}
-                value={password}
+                value={maskedPassword}
+                onChangeText={handlePasswordChange}
                 multiline={true}
-                onChangeText={setPassword}
                 />
             </View>
             <TouchableOpacity>
@@ -91,6 +97,9 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
         </View>
     );
 }
+
+
+
 
 const styles = StyleSheet.create({
     container: {

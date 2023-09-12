@@ -24,6 +24,7 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         password: password,
     };
 
+    console.log(url);
     axios.post(url, data, { headers })
     .then((response) => {
         console.log('Réponse de l\'API:', response.data);
@@ -52,7 +53,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
         setEmail("");
         setPassword("");
     };
-
     return (
         <View style={styles.container}>
             <View style={styles.box}></View>

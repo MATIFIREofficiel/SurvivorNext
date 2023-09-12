@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 
 function DisconnectionButton({ route })
 {
-  const { setIsSignedIn } = route.params || {};
+  const [isLogin, setLogin] = useState( route.params );
 
   return (
     <View style={styles.container}>
@@ -25,7 +25,7 @@ function DisconnectionButton({ route })
         title="Log out"
         type="clear"
         titleStyle={{ color: '#6F9EEB' }}
-        onPress={() => { route.params.setIsSignedIn(false);
+        onPress={() => { setLogin(false);
         }}
       />
     </View>
@@ -58,7 +58,7 @@ function ProfileStack({ route }) {
   );
 }
 
-export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
+export default function DrawerMenu({ navigation, apiUser, isSignedIn}) {
   return (
     <NavigationContainer styles={style.container}>
       <Drawer.Navigator initialRouteName="trombinoscope">
@@ -134,7 +134,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
         <Drawer.Screen
           name="Settings"
           component={DisconnectionButton}
-          initialParams={{ setIsSignedIn: setIsSignedIn }}
+          initialParams={{ isSignedIn }}
           options={{
             drawerIcon: ({ focused, size }) => (
               <Ionicons

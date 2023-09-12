@@ -1,42 +1,33 @@
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, useWindowDimensions } from "react-native";
+import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, useWindowDimensions, TextInput } from "react-native";
 import axios from "axios";
 import React, { useState, useEffect, route } from 'react';
 import {API_URL, API_KEY, AUTH} from '@env';
 
-function Item({ item, onPress, columnCount }) {
-  const screenWidth = useWindowDimensions().width;
-  const itemWidth = screenWidth / columnCount - 20
+function Item({ item, onPress}) {
+
   return (
-    <>
-      <View>
-        <TouchableOpacity onPress={onPress} style={styles.item}>
-          <Image
-            source={{
-              uri: API_URL + `/${item.id}/image`,
-              method: 'GET',
-              headers: {
-                accept: 'application/json',
-                'X-Group-Authorization': API_KEY,
-                Authorization: 'Bearer ' + AUTH,
-              },
-            }}
-            style={styles.image} />
-          <Text style={styles.item}> {item.name} {item.surname} </Text>
-        </TouchableOpacity>
-      </View>
-    </>
+    <TouchableOpacity onPress={onPress} style={styles.item}>
+      <Image
+        source={{
+          uri: API_URL + `/${item.id}/image`,
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            'X-Group-Authorization': API_KEY,
+            Authorization: 'Bearer ' + AUTH,
+          },
+        }}
+        style={styles.image} />
+    <Text style={styles.text}> {item.name} {item.surname} </Text>
+    </TouchableOpacity>
   );
 }
-let access_token = ""
-
 
 export default function TrombinoscopeScreen({ navigation, route }) {
 
   const [infos, setinfos] = useState([]);
-
   const {access_token} = route.params;
-  const screenWidth = useWindowDimensions().width;
-  const columnCount = screenWidth >= 400 ? 3 : 2;
+
   const getListEmployeesID = async () => {
 
     const url = API_URL;
@@ -65,23 +56,20 @@ export default function TrombinoscopeScreen({ navigation, route }) {
         item={item}
         onPress={() =>
           navigation.navigate('ProfileDetail', [access_token, item.id])}
-        columnCount={columnCount}
       />
     );
   };
 
   return (
-
     <View style={styles.homePage}>
       <FlatList
-        style={styles.list}
         refreshing={true}
         data={infos}
         renderItem={renderItem}
-        numColumns={columnCount}
+        numColumns={3}
         extraData={infos}
+        showsVerticalScrollIndicator={false}
       />
-
     </View>
   )
 }
@@ -89,22 +77,20 @@ export default function TrombinoscopeScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   homePage: {
     flex: 1,
-  },
-  list: {
-    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   item: {
-    marginVertical: 8,
-    marginHorizontal: this.columnCount === 2 ? 50 : 16,
-    width: 110,
+    alignItems: 'center',
+  },
+  text: {
+    width: 100,
+    textAlign: 'center'
   },
   image: {
-    paddingLeft: this.columnCount === 2 ? 50 : 16,
-    marginHorizontal: this.columnCount === 2 ? 50 : 16,
-    marginTop: 10,
+    borderRadius: 40,
     width: 100,
     height: 100,
-    borderRadius: 40,
-    overflow: "hidden",
+    margin: 10
   },
 });

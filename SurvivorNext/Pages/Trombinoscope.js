@@ -68,6 +68,7 @@ export default function TrombinoscopeScreen({ navigation, route }) {
         renderItem={renderItem}
         numColumns={3}
         extraData={infos}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   )

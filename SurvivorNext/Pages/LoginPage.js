@@ -13,10 +13,10 @@ import {API_URL, API_KEY} from '@env';
 
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {
-    const url = API_URL + '/login';
+    const url = process.env.REACT_APP_API_URL + '/login';
     const headers = {
         'accept': 'application/json',
-        'X-Group-Authorization': API_KEY,
+        'X-Group-Authorization': process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
     };
     const data = {
@@ -48,8 +48,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [isError, setIsError] = useState(false);
 
     const handleLoginPress = () => {
-        console.log("Email:", email);
-        console.log("Password:", password);
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
         setEmail("");
         setPassword("");
@@ -63,23 +61,23 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 <View style={styles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Email."
+                placeholder="Email"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
                 value={email}
+                multiline={true}
                 onChangeText={setEmail}
                 />
             </View>
             <View style={styles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Password."
+                placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
                 secureTextEntry={true}
                 value={password}
+                multiline={true}
                 onChangeText={setPassword}
                 />
             </View>

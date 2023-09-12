@@ -9,17 +9,18 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import axios from "axios";
+import {API_URL, API_KEY} from '@env';
 
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {
-    const url = 'https://masurao.fr/api/employees/login';
+    const url = process.env.REACT_APP_API_URL + '/login';
     const headers = {
         'accept': 'application/json',
-        'X-Group-Authorization': 'AhSyHQjIpPhIvfI5OU8HHe9nyhPKwY-q',
+        'X-Group-Authorization': process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
     };
     const data = {
-        email: email,
+        email: email.toLowerCase(),
         password: password,
     };
 
@@ -47,8 +48,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [isError, setIsError] = useState(false);
 
     const handleLoginPress = () => {
-        console.log("Email:", email);
-        console.log("Password:", password);
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
         setEmail("");
         setPassword("");
@@ -64,6 +63,8 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 style={styles.TextInput}
                 placeholder="Email."
                 placeholderTextColor="#003f5c"
+                textAlign="center"
+                caretHidden={true}
                 value={email}
                 onChangeText={setEmail}
                 />
@@ -73,6 +74,8 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 style={styles.TextInput}
                 placeholder="Password."
                 placeholderTextColor="#003f5c"
+                textAlign="center"
+                caretHidden={true}
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
@@ -125,13 +128,11 @@ const styles = StyleSheet.create({
         width: "70%",
         height: 45,
         marginBottom: 20,
-        alignItems: "center",
     },
     TextInput: {
         height: 50,
         flex: 1,
         padding: 10,
-        marginLeft: 10,
     },
     forgot_button: {
         height: 30,

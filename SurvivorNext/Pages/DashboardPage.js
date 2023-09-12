@@ -11,6 +11,19 @@ export default function DashboardPage() {
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
 
+  const inputRef = useRef(null);
+  const [isWeatherClicked, setisWeatherClicked] = useState(false);
+
+  const openKeyboard = (item) => {
+    console.log("WidgetList.js: openKeyboard: item: ", item);
+    if (item.name === "WeatherWidget") {
+      setisWeatherClicked(true);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  };
+
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
     bottomSheetRef.current.close();
@@ -41,7 +54,9 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
+        <TouchableOpacity>
           <Widget />
+        </TouchableOpacity>
       </View>
     );
   }, []);
@@ -57,7 +72,7 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
-    console.log(userWidgets);
+  console.log(userWidgets);
   return (
     <View style={styles.container}>
       {
@@ -65,6 +80,7 @@ export default function DashboardPage() {
       }
 
       <FlatList
+      style={{ zIndex: -1}}
         data={userWidgets}
         refreshing={true}
         renderItem={renderItemDashboard}
@@ -83,6 +99,7 @@ export default function DashboardPage() {
         detached={true}
         enablePanDownToClose={true}
         handleIndicatorPress={handleIndicatorPress}
+        style={{ zIndex: 1 }}
       >
         <FlatList
           data={widgets}

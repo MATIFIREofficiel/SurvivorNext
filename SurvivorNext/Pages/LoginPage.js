@@ -13,12 +13,14 @@ import {API_URL, API_KEY} from '@env';
 
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {
-    const url = API_URL + '/login';
+    const url = REACT_APP_API_URL + '/login';
     const headers = {
         'accept': 'application/json',
-        'X-Group-Authorization': API_KEY,
+        'X-Group-Authorization': REACT_APP_API_KEY,
         'Content-Type': 'application/json',
     };
+    console.log(url);
+    console.log("Login Page");
     const data = {
         email: email.toLowerCase(),
         password: password,

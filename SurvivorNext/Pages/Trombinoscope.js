@@ -12,12 +12,12 @@ function Item({ item, onPress, columnCount }) {
         <TouchableOpacity onPress={onPress} style={styles.item}>
           <Image
             source={{
-              uri: API_URL + `/${item.id}/image`,
+              uri: REACT_APP_API_URL + `/${item.id}/image`,
               method: 'GET',
               headers: {
                 accept: 'application/json',
-                'X-Group-Authorization': API_KEY,
-                Authorization: 'Bearer ' + AUTH,
+                'X-Group-Authorization': REACT_APP_API_KEY,
+                Authorization: 'Bearer ' + REACT_APP_AUTH,
               },
             }}
             style={styles.image} />
@@ -39,11 +39,11 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   const columnCount = screenWidth >= 400 ? 3 : 2;
   const getListEmployeesID = async () => {
 
-    const url = API_URL;
+    const url = REACT_APP_API_URL;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': API_KEY,
-      'Authorization': 'Bearer ' + AUTH,
+      'X-Group-Authorization': REACT_APP_API_KEY,
+      'Authorization': 'Bearer ' + REACT_APP_AUTH,
     };
 
     try {

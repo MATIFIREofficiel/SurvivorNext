@@ -2,7 +2,6 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Infos from '../Components/Infos';
-import {API_URL, API_KEY, AUTH} from '@env';
 
 export default function ProfileDetailScreen({ navigation, route }) {
 
@@ -14,7 +13,7 @@ export default function ProfileDetailScreen({ navigation, route }) {
     const headers = {
       'accept': 'application/json',
       'X-Group-Authorization': process.env.REACT_APP_API_KEY,
-      'Authorization': 'Bearer ' + access_token
+      'Authorization': 'Bearer ' + access_token,
     };
 
     try {
@@ -37,7 +36,7 @@ export default function ProfileDetailScreen({ navigation, route }) {
             headers: {
               accept: 'application/json',
               'X-Group-Authorization': process.env.REACT_APP_API_KEY,
-              Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
+              Authorization: 'Bearer ' + access_token,
             },
           }}
           style={styles.image} />

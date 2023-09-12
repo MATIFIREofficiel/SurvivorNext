@@ -37,6 +37,15 @@ export default function DashboardPage() {
     );
   }, []);
 
+  const renderItemDashboard = useCallback(({ item }) => {
+    const Widget = item;
+    return (
+      <View style={styles.itemContainer}>
+          <Widget />
+      </View>
+    );
+  }, []);
+
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
     setModalVisible(false);
@@ -58,7 +67,7 @@ export default function DashboardPage() {
       <FlatList
         data={userWidgets}
         refreshing={true}
-        renderItem={renderItem}
+        renderItem={renderItemDashboard}
         numColumns={2}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
       />

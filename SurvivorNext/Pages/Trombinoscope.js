@@ -25,7 +25,9 @@ function Item({ item, onPress}) {
 
 export default function TrombinoscopeScreen({ navigation, route }) {
 
-  const [infos, setinfos] = useState([]);
+  const [dataSearch, setDataSearch] = useState([])
+  const [infos, setInfos] = useState([]);
+  const [search, setSearch] = useState('');
   const {access_token} = route.params;
 
   const getListEmployeesID = async () => {
@@ -39,7 +41,8 @@ export default function TrombinoscopeScreen({ navigation, route }) {
 
     try {
       const response = await axios.get(url, { headers });
-      setinfos(response.data);
+      setInfos(response.data);
+      setDataSearch(response.data);
     } catch (error) {
       console.log(error.accept);
       return [];
@@ -60,25 +63,42 @@ export default function TrombinoscopeScreen({ navigation, route }) {
     );
   };
 
+  const filterEmployee = (text) => {
+    setSearch(text);
+    setDataSearch(infos.filter(employee =>
+      employee.name.toString().toLowerCase().includes(text.toLowerCase()) ||
+      employee.surname.toString().toLowerCase().includes(text.toLowerCase()) ||
+      text.length === 0))
+  };
+
   return (
-    <View style={styles.homePage}>
-      <FlatList
-        refreshing={true}
-        data={infos}
-        renderItem={renderItem}
-        numColumns={3}
-        extraData={infos}
-        showsVerticalScrollIndicator={false}
-      />
+    <View>
+      <TextInput style={styles.searchText}
+        placeholder="Search by name or username"
+        value={search}
+        onChangeText={filterEmployee}
+        defaultValue=''/>
+      <View style={styles.item}>
+        <FlatList
+          refreshing={true}
+          data={dataSearch}
+          renderItem={renderItem}
+          numColumns={3}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  homePage: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  searchText: {
+    backgroundColor: 'lightgray',
+    borderRadius: 20,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    marginHorizontal: 10,
+    marginVertical: 10
   },
   item: {
     alignItems: 'center',

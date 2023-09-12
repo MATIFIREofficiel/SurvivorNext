@@ -10,14 +10,13 @@ export default function ProfilePage({ navigation, route }) {
 
   const { access_token } = route.params[0];
   const id = route.params[1];
-  console.log(`id = ${id}`);
   const [infos, setinfos] = useState([]);
 
   const getUserInfo = async () => {
-    const url = API_URL + `/${route.params[1]}`;
+    const url = process.env.REACT_APP_API_URL + `/${route.params[1]}`;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': API_KEY,
+      'X-Group-Authorization': process.env.REACT_APP_API_KEY,
       'Authorization': 'Bearer ' + access_token
     };
 
@@ -37,12 +36,12 @@ export default function ProfilePage({ navigation, route }) {
       <View style={styles.container}>
         <Image
           source={{
-            uri: API_URL + `/${infos.id}/image`,
+            uri: process.env.REACT_APP_API_URL + `/${infos.id}/image`,
             method: 'GET',
             headers: {
               accept: 'application/json',
-              'X-Group-Authorization': API_KEY,
-              Authorization: 'Bearer ' + AUTH,
+              'X-Group-Authorization': process.env.REACT_APP_API_KEY,
+              Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
             },
           }}
           style={styles.image} />

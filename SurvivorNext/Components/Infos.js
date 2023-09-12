@@ -66,4 +66,6 @@ const styles = StyleSheet.create({
   },
 })
 
-//{"birth_date": "2000-08-13", "email": "oliver.lewis@masurao.jp", "gender": "Male", "id": 74, "name": "Oliver", "subordinates": [], "surname": "Lewis", "work": "Administrative Intern"}
+//{"birth_date": "2000-08-13", "email": "oliver.lewis@masurao.jp",
+//"gender": "Male", "id": 74, "name": "Oliver", "subordinates": [], 
+// "surname": "Lewis", "work": "Administrative Intern"}

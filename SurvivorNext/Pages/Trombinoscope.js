@@ -9,16 +9,16 @@ function Item({ item, onPress}) {
     <TouchableOpacity onPress={onPress} style={styles.item}>
       <Image
         source={{
-          uri: API_URL + `/${item.id}/image`,
+          uri: process.env.REACT_APP_API_URL + `/${item.id}/image`,
           method: 'GET',
           headers: {
             accept: 'application/json',
-            'X-Group-Authorization': API_KEY,
-            Authorization: 'Bearer ' + AUTH,
+            'X-Group-Authorization': process.env.REACT_APP_API_KEY,
+            Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
           },
         }}
         style={styles.image} />
-    <Text style={styles.text}> {item.name} {item.surname} </Text>
+      <Text style={styles.item}> {item.name} {item.surname} </Text>
     </TouchableOpacity>
   );
 }
@@ -30,11 +30,11 @@ export default function TrombinoscopeScreen({ navigation, route }) {
 
   const getListEmployeesID = async () => {
 
-    const url = API_URL;
+    const url = process.env.REACT_APP_API_URL;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': API_KEY,
-      'Authorization': 'Bearer ' + AUTH,
+      'X-Group-Authorization': process.env.REACT_APP_API_KEY,
+      'Authorization': 'Bearer ' + process.env.REACT_APP_AUTH,
     };
 
     try {

@@ -9,7 +9,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import axios from "axios";
-import {API_URL, API_KEY} from '@env';
 
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {

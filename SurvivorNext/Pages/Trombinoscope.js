@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, useWindowDimensions, TextInput } from "react-native";
 import axios from "axios";
 import React, { useState, useEffect, route } from 'react';
-import {API_URL, API_KEY, AUTH} from '@env';
 
-function Item({ item, onPress}) {
+function Item({ item, onPress, access_token}) {
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.item}>
@@ -14,7 +13,7 @@ function Item({ item, onPress}) {
           headers: {
             accept: 'application/json',
             'X-Group-Authorization': process.env.REACT_APP_API_KEY,
-            Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
+            'Authorization': 'Bearer ' + access_token,
           },
         }}
         style={styles.image} />
@@ -31,14 +30,12 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   const {access_token} = route.params;
 
   const getListEmployeesID = async () => {
-
     const url = process.env.REACT_APP_API_URL;
     const headers = {
       'accept': 'application/json',
       'X-Group-Authorization': process.env.REACT_APP_API_KEY,
-      'Authorization': 'Bearer ' + process.env.REACT_APP_AUTH,
+      'Authorization': 'Bearer ' + access_token.access_token.toString(),
     };
-
     try {
       const response = await axios.get(url, { headers });
       setInfos(response.data);
@@ -56,6 +53,7 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   const renderItem = ({ item }) => {
     return (
       <Item
+        access_token={access_token.access_token.toString()}
         item={item}
         onPress={() =>
           navigation.navigate('ProfileDetail', [access_token, item.id])}

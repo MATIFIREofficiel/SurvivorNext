@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Infos from '../Components/Infos';
 import WeatherWidget from '../Components/WeatherWidget';
-import {API_URL, API_KEY, AUTH} from '@env';
-
 
 export default function ProfilePage({ navigation, route }) {
 

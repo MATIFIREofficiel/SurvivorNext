@@ -12,12 +12,12 @@ function Item({ item, onPress, columnCount }) {
         <TouchableOpacity onPress={onPress} style={styles.item}>
           <Image
             source={{
-              uri: REACT_APP_API_URL + `/${item.id}/image`,
+              uri: process.env.REACT_APP_API_URL + `/${item.id}/image`,
               method: 'GET',
               headers: {
                 accept: 'application/json',
-                'X-Group-Authorization': REACT_APP_API_KEY,
-                Authorization: 'Bearer ' + REACT_APP_AUTH,
+                'X-Group-Authorization': process.env.REACT_APP_API_KEY,
+                Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
               },
             }}
             style={styles.image} />

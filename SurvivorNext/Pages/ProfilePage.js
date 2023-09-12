@@ -10,7 +10,6 @@ export default function ProfilePage({ navigation, route }) {
 
   const { access_token } = route.params[0];
   const id = route.params[1];
-  console.log(`id = ${id}`);
   const [infos, setinfos] = useState([]);
 
   const getUserInfo = async () => {

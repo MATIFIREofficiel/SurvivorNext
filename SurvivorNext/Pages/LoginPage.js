@@ -19,8 +19,6 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         'X-Group-Authorization': process.env.REACT_APP_API_KEY,
         'Content-Type': 'application/json',
     };
-    console.log(url);
-    console.log("Login Page");
     const data = {
         email: email.toLowerCase(),
         password: password,
@@ -50,8 +48,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [isError, setIsError] = useState(false);
 
     const handleLoginPress = () => {
-        console.log("Email:", email);
-        console.log("Password:", password);
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
         setEmail("");
         setPassword("");

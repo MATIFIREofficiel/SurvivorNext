@@ -7,7 +7,6 @@ import {API_URL, API_KEY, AUTH} from '@env';
 export default function ProfileDetailScreen({ navigation, route }) {
 
   const { access_token } = route.params[0];
-  console.log(`id = ${route.params[1]}`);
   const [infos, setinfos] = useState([]);
 
   const getUserInfo = async () => {

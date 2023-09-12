@@ -39,11 +39,11 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   const columnCount = screenWidth >= 400 ? 3 : 2;
   const getListEmployeesID = async () => {
 
-    const url = REACT_APP_API_URL;
+    const url = process.env.REACT_APP_API_URL;
     const headers = {
       'accept': 'application/json',
-      'X-Group-Authorization': REACT_APP_API_KEY,
-      'Authorization': 'Bearer ' + REACT_APP_AUTH,
+      'X-Group-Authorization': process.env.REACT_APP_API_KEY,
+      'Authorization': 'Bearer ' + process.env.REACT_APP_AUTH,
     };
 
     try {

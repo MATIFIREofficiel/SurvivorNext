@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -10,14 +10,16 @@ export default function DashboardPage() {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
-
-  const inputRef = useRef(null);
-  const [isWeatherClicked, setisWeatherClicked] = useState(false);
+  const inputRef = useRef('');
+  const [isWeatherClicked, setIsWeatherClicked] = useState(false);
+  const [userWidgets, setUserWidgets] = useState([]);
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const [widgets, setWidgets] = useState([WeatherWidget]);
+  const [city, setCity] = useState('paris'); // État initial vide
 
   const openKeyboard = (item) => {
-    console.log("WidgetList.js: openKeyboard: item: ", item);
     if (item.name === "WeatherWidget") {
-      setisWeatherClicked(true);
+      setIsWeatherClicked(true);
       if (inputRef.current) {
         inputRef.current.focus();
       }
@@ -29,11 +31,6 @@ export default function DashboardPage() {
     bottomSheetRef.current.close();
   }, []);
 
-  const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
-
-  const [userWidgets, setUserWidgets] = useState([]);
-
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
 
   const handleSheetChanges = useCallback((index) => {
     console.log('handleSheetChanges', index);
@@ -44,22 +41,29 @@ export default function DashboardPage() {
     return (
       <View style={styles.itemContainer}>
         <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
-          <Widget />
+        {Widget.name === "WeatherWidget" ? <Widget city={"paris"} /> : <Widget />}
         </TouchableOpacity>
       </View>
     );
   }, []);
 
-  const renderItemDashboard = useCallback(({ item }) => {
+  const removeWidget = (widgetToRemove) => {
+    setUserWidgets((prevUserWidgets) =>
+      prevUserWidgets.filter((widget) => widget !== widgetToRemove)
+    );
+  };
+
+
+  const renderItemDashboard = ({ item }) => {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <TouchableOpacity>
-          <Widget />
+        <TouchableOpacity onPress={() => openKeyboard(item)}>
+          {Widget.name === "WeatherWidget" ? <WeatherWidget city={city}/> : <Widget />}
         </TouchableOpacity>
       </View>
     );
-  }, []);
+  };
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
@@ -67,24 +71,35 @@ export default function DashboardPage() {
   }, []);
 
 
+  const submitFunction = () => {
+    console.log("submitFunction");
+    console.log(city);
+  }
+
+
   const handlePresentModalPress = useCallback(() => {
     bottomSheetRef.current.snapToIndex(0);
     setModalVisible(true);
   }, []);
 
-  console.log(userWidgets);
   return (
     <View style={styles.container}>
       {
         isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
       }
+      <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
+        onChangeText={(text) => setCity(text)}
+        onSubmitEditing={submitFunction}
+        value={city}
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, display: isWeatherClicked ? 'flex' : 'none' }} />
 
       <FlatList
-      style={{ zIndex: -1}}
+        style={{ zIndex: -1 }}
         data={userWidgets}
         refreshing={true}
         renderItem={renderItemDashboard}
         numColumns={2}
+        keyExtractor={(item, index) => index}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
       />
 
@@ -95,10 +110,10 @@ export default function DashboardPage() {
         ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
+        // onChange={handleSheetChanges}
         detached={true}
         enablePanDownToClose={true}
-        handleIndicatorPress={handleIndicatorPress}
+        // handleIndicatorPress={handleIndicatorPress}
         style={{ zIndex: 1 }}
       >
         <FlatList

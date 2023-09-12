@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -17,6 +17,9 @@ export default function DashboardPage() {
   }, []);
 
   const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
+
+  const [userWidgets, setUserWidgets] = useState([]);
+
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
   const handleSheetChanges = useCallback((index) => {
@@ -27,7 +30,7 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={() => { console.log(item); }}>
+        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
           <Widget />
         </TouchableOpacity>
       </View>
@@ -45,11 +48,21 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
+    console.log(userWidgets);
   return (
     <View style={styles.container}>
       {
         isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
       }
+
+      <FlatList
+        data={userWidgets}
+        refreshing={true}
+        renderItem={renderItem}
+        numColumns={2}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
+      />
+
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
         <Ionicons name="add-circle-outline" size={60} color="#4C96EB" />
       </TouchableOpacity>
@@ -87,7 +100,6 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   overlay: {
-    backgroundColor: '#E5E7E6',
     position: 'absolute',
     top: 0,
     bottom: 0,

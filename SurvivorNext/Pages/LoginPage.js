@@ -19,8 +19,8 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         'Content-Type': 'application/json',
     };
     const data = {
-        email: email.toLowerCase(),
-        password: password,
+        email: "oliver.lewis@masurao.jp",
+        password: "password",
     };
 
     console.log(url);
@@ -66,6 +66,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 value={email}
                 multiline={true}
                 onChangeText={setEmail}
+                onSubmitEditing={handleLoginPress}
                 />
             </View>
             <View style={styles.inputView}>
@@ -78,6 +79,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
+                onSubmitEditing={handleLoginPress}
                 />
             </View>
             <TouchableOpacity>

@@ -65,7 +65,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholderTextColor="#003f5c"
                 textAlign="center"
                 value={email}
-                secureTextEntry={true}
+                multiline={true}
                 onChangeText={setEmail}
                 onSubmitEditing={handleLoginPress}
                 />
@@ -76,7 +76,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                multiline={true}
+                secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
                 onSubmitEditing={handleLoginPress}

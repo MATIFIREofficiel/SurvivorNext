@@ -24,7 +24,7 @@ export default function Infos(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.name} >{props.infos.name} {props.infos.surname}</Text>
-      <Text style={styles.email}>Email: {props.infos.email}</Text>
+      <Text style={styles.email}>Email : {props.infos.email}</Text>
       <Text style={styles.birth}>Birthdate : {props.infos.birth_date}</Text>
       <Text style={styles.work}>Work : {props.infos.work} </Text>
       <Text style={styles.gender}>Gender : {props.infos.gender}</Text>

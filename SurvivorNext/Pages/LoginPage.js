@@ -55,7 +55,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     return (
         <View style={styles.container}>
             <View style={styles.box}></View>
-            <Text style={styles.title}>LOGIN</Text>
+            <Text style={styles.title}>Login</Text>
             <StatusBar style="auto" />
                 <View style={styles.inputView}>
                 <TextInput

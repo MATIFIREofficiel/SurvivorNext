@@ -61,23 +61,23 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 <View style={styles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Email."
+                placeholder="Email"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
                 value={email}
+                multiline={true}
                 onChangeText={setEmail}
                 />
             </View>
             <View style={styles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Password."
+                placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
                 secureTextEntry={true}
                 value={password}
+                multiline={true}
                 onChangeText={setPassword}
                 />
             </View>

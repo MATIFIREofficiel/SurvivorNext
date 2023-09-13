@@ -46,7 +46,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [isError, setIsError] = useState(false);
-    const [secureEntry, setSecureEntry] = useState(false);
 
     const handleLoginPress = () => {
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});

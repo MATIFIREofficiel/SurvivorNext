@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContainer: {
+    marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

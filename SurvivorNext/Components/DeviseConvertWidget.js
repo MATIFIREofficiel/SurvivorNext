@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Text,
   View,
@@ -33,6 +33,19 @@ export default function CurrencyConverter() {
   const [selectedCurrency, setSelectedCurrency] = useState(null);
 
   const [selectedCurrencyType, setSelectedCurrencyType] = useState('from');
+
+  const buttonRef = useRef(null);
+  const [buttonPosition, setButtonPosition] = useState({});
+
+  const getButtonPosition = () => {
+    buttonRef.current.measureInWindow((x, y, width, height) => {
+      console.log(`Position X: ${x}`);
+      console.log(`Position Y: ${y}`);
+      console.log(`Width: ${width}`);
+      console.log(`Height: ${height}`);
+      setButtonPosition({ x, y, width, height });
+    });
+  };
 
   useEffect(() => {
     const data = getDataForCurrency(fromCurrency);
@@ -147,10 +160,12 @@ export default function CurrencyConverter() {
         />
         <View >
           <TouchableOpacity
+            ref={buttonRef}
             style={styles.currencyButton}
             onPress={() => {
               setModalVisible(true);
               setSelectedCurrencyType('from');
+              getButtonPosition();
             }}
           >
             <Text style={styles.currencyButtonText}>{fromCurrency}</Text>
@@ -160,23 +175,26 @@ export default function CurrencyConverter() {
             transparent={true}
             animationType="fade"
             onRequestClose={() => setModalVisible(false)}
-            style={styles.centeredModal}
-            //style={[styles.modalContainer, { borderWidth: 1 }]}
+          // style={styles.centeredModal}
           >
-            <View style={styles.modalContainerList}>
-              <FlatList
-                data={currencies}
-                renderItem={renderCurrencyItem}
-                keyExtractor={(item) => item}
-              />
+            <View style={{ flex: 1, flexDirection: 'row', position: 'absolute', top: buttonPosition.y, left: buttonPosition.x }}>
+              <View style={styles.modalContainerList}>
+                <FlatList
+                  data={currencies}
+                  renderItem={renderCurrencyItem}
+                  keyExtractor={(item) => item}
+                />
+              </View>
             </View>
           </Modal>
         </View>
         <TouchableOpacity
+          ref={buttonRef}
           style={styles.currencyButton}
           onPress={() => {
             setModalVisible(true);
             setSelectedCurrencyType('to');
+            getButtonPosition();
           }}
         >
           <Text style={styles.currencyButtonText}>{toCurrency}</Text>
@@ -198,9 +216,11 @@ export default function CurrencyConverter() {
 
 const styles = StyleSheet.create({
   container: {
+    height: 250,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 10,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: 20,
   },
   header: {
@@ -241,11 +261,10 @@ const styles = StyleSheet.create({
   },
 
   modalContainerList: {
-    width: '20%',
-    height: '20%',
+    width: '40%',
+    height: '30%',
     backgroundColor: 'white',
     borderRadius: 10,
-    padding: 10,
   },
   currencyItem: {
     flex: 1,

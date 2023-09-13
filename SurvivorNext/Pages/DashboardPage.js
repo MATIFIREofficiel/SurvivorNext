@@ -3,7 +3,17 @@ import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
+import CurrencyConverter from '../Components/DeviseConvertWidget.js';
 import { Ionicons } from '@expo/vector-icons';
+
+
+function RenderItemScroll (props) {
+  const Widget = props.item;
+
+  return (
+    <Widget />
+  );
+};
 
 
 function UserWeatherWidget(props) {
@@ -48,7 +58,7 @@ export default function DashboardPage() {
   const bottomSheetRef = useRef(null);
   const [userWidgets, setUserWidgets] = useState([]);
   const snapPoints = useMemo(() => ['25%', '50%'], []);
-  const [widgets, setWidgets] = useState([WeatherWidget]);
+  const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter]);
 
 
   const handleIndicatorPress = useCallback(() => {
@@ -65,7 +75,7 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [Widget, ...prevUserWidgets]); }}>
+        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
           {Widget.name === "WeatherWidget" ? <Widget city={Widget.city} /> : <Widget />}
         </TouchableOpacity>
       </View>
@@ -97,6 +107,7 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
+
   return (
     <View style={styles.container}>
       {
@@ -109,7 +120,7 @@ export default function DashboardPage() {
             {item.name === "WeatherWidget" ? (
               <UserWeatherWidget item={item} />
             ) : (
-              <item />
+              <RenderItemScroll item={item}/>
             )}
           </View>
         ))}
@@ -165,6 +176,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContainer: {
+    marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

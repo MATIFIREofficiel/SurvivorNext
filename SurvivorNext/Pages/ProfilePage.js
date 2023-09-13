@@ -45,10 +45,6 @@ export default function ProfilePage({ navigation, route }) {
           style={styles.image} />
         <Infos style={styles.infos} infos={infos} />
       </View>
-      <View style={{flex: 2 , flexDirection:'row' ,justifyContent: "flex-start", alignItems:"flex-start"}}>
-        <WeatherWidget style={styles.widget} city={"Nantes"} />
-        <WeatherWidget style={styles.widget} city={"paris"}/>
-      </View>
     </>
   )
 }

@@ -14,7 +14,7 @@ import {
 
 export default function AdminPanel() {
   const buttonColors = ['red', 'orange', 'yellow', 'blue', 'indigo', 'violet', 'purple', 'magenta', 'lime']; // Couleurs des boutons
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('undefined');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [companyName, setCompanyName] = useState('');
@@ -23,8 +23,8 @@ export default function AdminPanel() {
     setIsModalVisible(!isModalVisible);
   };
   const handleButtonPress = (color) => {
-    console.log(`Couleur du bouton : ${color}`);
-    setSelectedColor(color);
+    setSelectedColor((prevColor) => (prevColor === color ? 'undefined' : color));
+    console.log(`Button color : ${selectedColor}`);
   };
 
   const handleCompanyNameChange = (text) => {
@@ -62,7 +62,7 @@ export default function AdminPanel() {
               placeholder="Undefined"
             />
             <Button
-              title="Enregistrer"
+              title="Save"
               onPress={() => {
                 toggleModal();
               }}

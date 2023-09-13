@@ -1,0 +1,48 @@
+{
+    "result": {
+        "from": "THB",
+        "conversion": [
+            {
+                "to": "EUR",
+                "rate": 0.0262
+            },
+            {
+                "to": "USD",
+                "rate": 0.0280
+            },
+            {
+                "to": "JPY",
+                "rate": 4.1434
+            },
+            {
+                "to": "GBP",
+                "rate": 0.0225
+            },
+            {
+                "to": "CHF",
+                "rate": 0.0250
+            },
+            {
+                "to": "CAD",
+                "rate": 0.0383
+            },
+            {
+                "to": "MAD",
+                "rate": 0.2849
+            },
+            {
+                "to": "CNY",
+                "rate": 0.2059
+            },
+            {
+                "to": "ILS",
+                "rate": 0.1078
+            },
+            {
+                "to": "RUB",
+                "rate": 2.7404
+            }
+        ]
+    },
+    "status": "OK"
+}

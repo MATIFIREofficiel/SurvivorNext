@@ -1,0 +1,48 @@
+{
+    "result": {
+        "from": "CHF",
+        "conversion": [
+            {
+                "to": "EUR",
+                "rate": 1.0467
+            },
+            {
+                "to": "USD",
+                "rate": 1.1201
+            },
+            {
+                "to": "JPY",
+                "rate": 165.4800
+            },
+            {
+                "to": "GBP",
+                "rate": 0.8985
+            },
+            {
+                "to": "CAD",
+                "rate": 1.5301
+            },
+            {
+                "to": "MAD",
+                "rate": 11.3792
+            },
+            {
+                "to": "CNY",
+                "rate": 8.2238
+            },
+            {
+                "to": "THB",
+                "rate": 39.9530
+            },
+            {
+                "to": "ILS",
+                "rate": 4.3049
+            },
+            {
+                "to": "RUB",
+                "rate": 109.4748
+            }
+        ]
+    },
+    "status": "OK"
+}

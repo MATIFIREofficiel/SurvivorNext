@@ -1,0 +1,48 @@
+{
+    "result": {
+        "from": "RUB",
+        "conversion": [
+            {
+                "to": "EUR",
+                "rate": 0.0096
+            },
+            {
+                "to": "USD",
+                "rate": 0.0102
+            },
+            {
+                "to": "JPY",
+                "rate": 1.5120
+            },
+            {
+                "to": "GBP",
+                "rate": 0.0082
+            },
+            {
+                "to": "CHF",
+                "rate": 0.0091
+            },
+            {
+                "to": "CAD",
+                "rate": 0.0140
+            },
+            {
+                "to": "MAD",
+                "rate": 0.1039
+            },
+            {
+                "to": "CNY",
+                "rate": 0.0751
+            },
+            {
+                "to": "THB",
+                "rate": 0.3649
+            },
+            {
+                "to": "ILS",
+                "rate": 0.0393
+            }
+        ]
+    },
+    "status": "OK"
+}

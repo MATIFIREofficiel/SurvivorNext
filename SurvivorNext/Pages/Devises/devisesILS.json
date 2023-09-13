@@ -1,0 +1,48 @@
+{
+    "result": {
+        "from": "ILS",
+        "conversion": [
+            {
+                "to": "EUR",
+                "rate": 0.2431
+            },
+            {
+                "to": "USD",
+                "rate": 0.2602
+            },
+            {
+                "to": "JPY",
+                "rate": 38.4505
+            },
+            {
+                "to": "GBP",
+                "rate": 0.2087
+            },
+            {
+                "to": "CHF",
+                "rate": 0.2323
+            },
+            {
+                "to": "CAD",
+                "rate": 0.3554
+            },
+            {
+                "to": "MAD",
+                "rate": 2.6434
+            },
+            {
+                "to": "CNY",
+                "rate": 1.9104
+            },
+            {
+                "to": "THB",
+                "rate": 9.2800
+            },
+            {
+                "to": "RUB",
+                "rate": 25.4308
+            }
+        ]
+    },
+    "status": "OK"
+}

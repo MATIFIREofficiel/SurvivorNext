@@ -165,12 +165,12 @@ const styles = StyleSheet.create({
   },
 
   scrollContainer: {
-    flexDirection: 'row', // Utilisez une disposition en ligne pour les widgets
-    flexWrap: 'wrap', // Permet aux widgets de passer à la ligne si nécessaire
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   itemContainerScroll: {
-    width: '48%', // Largeur de chaque widget
+    width: '48%',
     marginBottom: 16,
   },
 

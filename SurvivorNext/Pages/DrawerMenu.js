@@ -6,6 +6,7 @@ import ProfileDetailScreen from './ProfileDetailsScreen.js';
 import TrombinoscopeScreen from './Trombinoscope.js';
 import ProfilePage from './ProfilePage.js';
 import DeveloppementScreen from './DeveloppementScreen.js';
+import AdminPanel from './AdminPanel.js';
 
 import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet } from 'react-native';
@@ -139,6 +140,19 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
             drawerIcon: ({ focused, size }) => (
               <Ionicons
                 name="settings"
+                size={size}
+                color={focused ? 'blue' : '#ccc'}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Admin Panel"
+          component={AdminPanel}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <Ionicons
+                name="color-wand"
                 size={size}
                 color={focused ? 'blue' : '#ccc'}
               />

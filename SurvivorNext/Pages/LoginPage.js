@@ -19,8 +19,8 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         'Content-Type': 'application/json',
     };
     const data = {
-        email: "oliver.lewis@masurao.jp",
-        password: "password",
+        email: email.toLowerCase(),
+        password: password,
     };
 
     console.log(url);
@@ -46,6 +46,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const [isError, setIsError] = useState(false);
+    const [secureEntry, setSecureEntry] = useState(false);
 
     const handleLoginPress = () => {
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
@@ -64,7 +65,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholderTextColor="#003f5c"
                 textAlign="center"
                 value={email}
-                multiline={true}
+                secureTextEntry={true}
                 onChangeText={setEmail}
                 onSubmitEditing={handleLoginPress}
                 />
@@ -75,8 +76,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
-                secureTextEntry={true}
+                multiline={true}
                 value={password}
                 onChangeText={setPassword}
                 onSubmitEditing={handleLoginPress}

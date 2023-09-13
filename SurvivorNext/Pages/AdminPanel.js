@@ -4,7 +4,7 @@ export default function AdminPanel({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.box}>
-            <Text style={styles.text}>Admin Panel</Text>
+                <Text style={styles.text}>Currnder development</Text>
             </View>
         </View>
     );

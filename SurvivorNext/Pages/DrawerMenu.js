@@ -1,12 +1,14 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import React, { useState, useEffect } from 'react';
 
 import ProfileDetailScreen from './ProfileDetailsScreen.js';
 import TrombinoscopeScreen from './Trombinoscope.js';
 import ProfilePage from './ProfilePage.js';
 import DeveloppementScreen from './DeveloppementScreen.js';
 import AdminPanel from './AdminPanel.js';
+import isAdmin from '../Components/isAdmin.js';
 
 import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet } from 'react-native';
@@ -60,6 +62,16 @@ function ProfileStack({ route }) {
 }
 
 export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
+  const [isAdminUser, setIsAdminUser] = useState(false);
+
+  useEffect(() => {
+    async function checkAdminStatus() {
+      const isAdminResult = await isAdmin(apiUser);
+      setIsAdminUser(isAdminResult);
+    }
+    checkAdminStatus();
+  }, [apiUser]);
+
   return (
     <NavigationContainer styles={style.container}>
       <Drawer.Navigator initialRouteName="trombinoscope">
@@ -146,19 +158,21 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
             ),
           }}
         />
-        <Drawer.Screen
-          name="Admin Panel"
-          component={AdminPanel}
-          options={{
-            drawerIcon: ({ focused, size }) => (
-              <Ionicons
-                name="color-wand"
-                size={size}
-                color={focused ? 'blue' : '#ccc'}
-              />
-            ),
-          }}
-        />
+        { isAdminUser === true ?
+          <Drawer.Screen
+            name="Admin Panel"
+            component={AdminPanel}
+            options={{
+              drawerIcon: ({ focused, size }) => (
+                <Ionicons
+                  name="color-wand"
+                  size={size}
+                  color={focused ? 'blue' : '#ccc'}
+                />
+              ),
+            }}
+          />
+        : null }
       </Drawer.Navigator>
     </NavigationContainer>
   );

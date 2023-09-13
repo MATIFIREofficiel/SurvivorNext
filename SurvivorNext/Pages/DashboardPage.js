@@ -124,7 +124,6 @@ export default function DashboardPage() {
         snapPoints={snapPoints}
         detached={true}
         enablePanDownToClose={true}
-        // handleIndicatorPress={handleIndicatorPress}
         style={{ zIndex: 1 }}
       >
         <FlatList

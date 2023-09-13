@@ -1,21 +1,17 @@
-import { StyleSheet, View, FlatList, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
 import { Ionicons } from '@expo/vector-icons';
 
 
-export default function DashboardPage() {
-
-  const [isModalVisible, setModalVisible] = useState(false);
-  const bottomSheetRef = useRef(null);
-  const inputRef = useRef('');
+function UserWeatherWidget(props) {
+  const inputRef = useRef(null);
   const [isWeatherClicked, setIsWeatherClicked] = useState(false);
-  const [userWidgets, setUserWidgets] = useState([]);
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
-  const [widgets, setWidgets] = useState([WeatherWidget]);
-  const [city, setCity] = useState('paris'); // État initial vide
+
+  const Widget = props.item;
+  const [city, setCity] = useState('paris');
 
   const openKeyboard = (item) => {
     if (item.name === "WeatherWidget") {
@@ -25,6 +21,35 @@ export default function DashboardPage() {
       }
     }
   };
+
+  const handleCityChange = useCallback((text) => {
+    setCity(text);
+  }, []);
+
+
+  return (
+    <View>
+      <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
+        onChangeText={handleCityChange}
+        value={city}
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, display: isWeatherClicked ? 'flex' : 'none' }} />
+
+      <TouchableOpacity onPress={() => openKeyboard(Widget)}>
+        <Widget city={city} />
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+
+export default function DashboardPage() {
+
+  const [isModalVisible, setModalVisible] = useState(false);
+  const bottomSheetRef = useRef(null);
+  const [userWidgets, setUserWidgets] = useState([]);
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const [widgets, setWidgets] = useState([WeatherWidget]);
+
 
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
@@ -40,12 +65,12 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
-        {Widget.name === "WeatherWidget" ? <Widget city={"paris"} /> : <Widget />}
+        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [Widget, ...prevUserWidgets]); }}>
+          {Widget.name === "WeatherWidget" ? <Widget city={Widget.city} /> : <Widget />}
         </TouchableOpacity>
       </View>
     );
-  }, []);
+  }, [userWidgets]);
 
   const removeWidget = (widgetToRemove) => {
     setUserWidgets((prevUserWidgets) =>
@@ -54,16 +79,14 @@ export default function DashboardPage() {
   };
 
 
-  const renderItemDashboard = ({ item }) => {
-    const Widget = item;
-    return (
-      <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={() => openKeyboard(item)}>
-          {Widget.name === "WeatherWidget" ? <WeatherWidget city={city}/> : <Widget />}
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  // const renderItemDashboard = useCallback(({ item }) => {
+  //   const Widget = item;
+  //   return (
+  //     <View style={styles.itemContainer}>
+  //       {Widget.name === "WeatherWidget" ? <UserWeatherWidget item={item} /> : <Widget />}
+  //     </View>
+  //   );
+  // }, []);
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
@@ -87,21 +110,18 @@ export default function DashboardPage() {
       {
         isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
       }
-      <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
-        onChangeText={(text) => setCity(text)}
-        onSubmitEditing={submitFunction}
-        value={city}
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, display: isWeatherClicked ? 'flex' : 'none' }} />
 
-      <FlatList
-        style={{ zIndex: -1 }}
-        data={userWidgets}
-        refreshing={true}
-        renderItem={renderItemDashboard}
-        numColumns={2}
-        keyExtractor={(item, index) => index}
-        columnWrapperStyle={{ justifyContent: 'space-between' }}
-      />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {userWidgets.map((item, index) => (
+          <View style={styles.itemContainerScroll} key={index}>
+            {item.name === "WeatherWidget" ? (
+              <UserWeatherWidget item={item} />
+            ) : (
+              <item />
+            )}
+          </View>
+        ))}
+      </ScrollView>
 
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
         <Ionicons name="add-circle-outline" size={60} color="#4C96EB" />
@@ -138,6 +158,7 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     width: '50%',
+    height: '30%',
     padding: 12,
   },
   overlay: {
@@ -152,4 +173,15 @@ const styles = StyleSheet.create({
     bottom: 40,
     right: 20,
   },
+
+  scrollContainer: {
+    flexDirection: 'row', // Utilisez une disposition en ligne pour les widgets
+    flexWrap: 'wrap', // Permet aux widgets de passer à la ligne si nécessaire
+    justifyContent: 'space-between',
+  },
+  itemContainerScroll: {
+    width: '48%', // Largeur de chaque widget
+    marginBottom: 16,
+  },
+
 });

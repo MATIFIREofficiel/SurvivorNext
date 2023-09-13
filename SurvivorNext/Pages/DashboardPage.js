@@ -79,14 +79,6 @@ export default function DashboardPage() {
   };
 
 
-  // const renderItemDashboard = useCallback(({ item }) => {
-  //   const Widget = item;
-  //   return (
-  //     <View style={styles.itemContainer}>
-  //       {Widget.name === "WeatherWidget" ? <UserWeatherWidget item={item} /> : <Widget />}
-  //     </View>
-  //   );
-  // }, []);
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();

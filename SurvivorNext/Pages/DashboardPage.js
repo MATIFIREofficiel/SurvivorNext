@@ -122,7 +122,6 @@ export default function DashboardPage() {
         ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
-        // onChange={handleSheetChanges}
         detached={true}
         enablePanDownToClose={true}
         // handleIndicatorPress={handleIndicatorPress}

@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react';
 
+
 import ProfileDetailScreen from './ProfileDetailsScreen.js';
 import TrombinoscopeScreen from './Trombinoscope.js';
 import ProfilePage from './ProfilePage.js';
@@ -11,8 +12,9 @@ import AdminPanel from './AdminPanel.js';
 import isAdmin from '../Components/isAdmin.js';
 
 import { Ionicons } from '@expo/vector-icons';
-import { Button, View, StyleSheet } from 'react-native';
+import { Button, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import DashboardPage from './DashboardPage.js';
+import { useAppContext } from '../AppContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,29 +24,50 @@ function DisconnectionButton({ route })
 {
   const { setIsSignedIn } = route.params || {};
 
+  const {
+    appColor,
+  } = useAppContext();
+
+  const dynamicStyles = {
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    logOut: {
+      borderWidth: 2,
+      borderColor: 'black',
+      borderRadius: 5,
+      backgroundColor: appColor,
+      padding: 10,
+      width: "50%",
+      height: "7%",
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      fontWeight: 'bold',
+      color: 'white',
+      fontSize: 20,
+      textAlign: 10,
+    },
+  };
+
   return (
-    <View style={styles.container}>
-      <Button
-        title="Log out"
-        type="clear"
-        titleStyle={{ color: '#6F9EEB' }}
-        onPress={() => { route.params.setIsSignedIn(false);
+    <View style={dynamicStyles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          route.params.setIsSignedIn(false);
         }}
-      />
+        style={dynamicStyles.logOut}
+      >
+        <Text style={[dynamicStyles.text, { textAlign: 'center' }]}>
+          Log out
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 2,
-    borderColor: 'blue',
-    borderRadius: 5,
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-  },
-});
 
 function ProfileStack({ route }) {
   return (
@@ -63,6 +86,10 @@ function ProfileStack({ route }) {
 
 export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
   const [isAdminUser, setIsAdminUser] = useState(false);
+  const {
+    appColor,
+    setAppColor,
+  } = useAppContext();
 
   useEffect(() => {
     async function checkAdminStatus() {
@@ -73,18 +100,20 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
   }, [apiUser]);
 
   return (
-    <NavigationContainer styles={style.container}>
-      <Drawer.Navigator initialRouteName="trombinoscope">
+    <NavigationContainer style={styles.container}>
+      <Drawer.Navigator initialRouteName="trombinoscope" screenOptions={{
+        drawerActiveTintColor: appColor,
+        drawerInactiveTintColor: "#ccc",
+      }}>
         <Drawer.Screen name="Trombinoscope" component={ProfileStack}
           initialParams={apiUser}
-          options={
-            {
+          options={{
               drawerIcon: ({ focused, size }) => (
                 <Ionicons
 
                   name={focused ? "people" : "people-outline"}
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -96,7 +125,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="person"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -107,7 +136,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="ios-notifications"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -118,7 +147,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="grid"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -129,7 +158,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="chatbubbles"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -140,7 +169,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="calendar"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }} />
@@ -153,7 +182,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
               <Ionicons
                 name="settings"
                 size={size}
-                color={focused ? 'blue' : '#ccc'}
+                color={focused ? appColor : '#ccc'}
               />
             ),
           }}
@@ -167,7 +196,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="color-wand"
                   size={size}
-                  color={focused ? 'blue' : '#ccc'}
+                  color={focused ? appColor : '#ccc'}
                 />
               ),
             }}
@@ -178,7 +207,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
   );
 }
 
-const style = ({
+const styles = ({
   container: {
     flex: 1,
     backgroundColor: '#E5E7E6',

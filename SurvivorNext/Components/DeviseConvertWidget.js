@@ -149,7 +149,7 @@ export default function CurrencyConverter() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Convertisseur de devises</Text>
+      <Text style={styles.header}>Currency converter</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}

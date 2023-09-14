@@ -40,10 +40,12 @@ function UserWeatherWidget(props) {
 
   return (
     <View>
-      <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
+      { isWeatherClicked &&
+        <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
         onChangeText={handleCityChange}
         value={city}
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, display: isWeatherClicked ? 'flex' : 'none' }} />
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1}} />
+      }
 
       <TouchableOpacity onPress={() => openKeyboard(Widget)}>
         <Widget city={city} />

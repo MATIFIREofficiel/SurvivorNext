@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native'
 import React from 'react'
 
 function Subordinates(props) {
@@ -23,9 +23,12 @@ function Subordinates(props) {
 export default function Infos(props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.name} >{props.infos.name} {props.infos.surname}</Text>
-      <Text style={styles.email}>Email : {props.infos.email}</Text>
+      <Text style={styles.name} >Name : {props.infos.name}</Text>
+      <Text style={styles.name} >Surname : {props.infos.surname}</Text>
       <Text style={styles.birth}>Birthdate : {props.infos.birth_date}</Text>
+      <TouchableOpacity onPress={() => Linking.openURL('mailto:' + props.infos.email)}>
+        <Text style={styles.email}>Email : {props.infos.email}</Text>
+      </TouchableOpacity>
       <Text style={styles.work}>Work : {props.infos.work} </Text>
       <Text style={styles.gender}>Gender : {props.infos.gender}</Text>
       <Subordinates infos={props.infos} />
@@ -36,33 +39,37 @@ export default function Infos(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    marginTop: 30,
+    alignItems: 'center'
   },
   name: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    paddingVertical: 8,
   },
   email: {
-    fontSize: 13,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    paddingVertical: 8,
   },
   birth: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    paddingVertical: 8,
   },
   work: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    paddingVertical: 8,
   },
   gender: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    paddingVertical: 8,
   },
 })
 

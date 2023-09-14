@@ -6,11 +6,10 @@ import Infos from '../Components/Infos';
 export default function ProfilePage({ navigation, route }) {
 
   const { access_token } = route.params[0];
-  const id = route.params[1];
   const [infos, setinfos] = useState([]);
 
   const getUserInfo = async () => {
-    const url = process.env.REACT_APP_API_URL + `/${route.params[1]}`;
+    const url = process.env.REACT_APP_API_URL + `/me`;
     const headers = {
       'accept': 'application/json',
       'X-Group-Authorization': process.env.REACT_APP_API_KEY,
@@ -38,7 +37,7 @@ export default function ProfilePage({ navigation, route }) {
             headers: {
               accept: 'application/json',
               'X-Group-Authorization': process.env.REACT_APP_API_KEY,
-              Authorization: 'Bearer ' + process.env.REACT_APP_AUTH,
+              Authorization: 'Bearer ' + access_token,
             },
           }}
           style={styles.image} />

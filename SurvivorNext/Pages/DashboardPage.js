@@ -4,6 +4,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
 import CurrencyConverter from '../Components/DeviseConvertWidget.js';
+import JokePage from '../Components/JokeWidget.js';
 import { Ionicons } from '@expo/vector-icons';
 
 
@@ -57,8 +58,8 @@ export default function DashboardPage() {
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
   const [userWidgets, setUserWidgets] = useState([]);
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
-  const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter]);
+  const snapPoints = useMemo(() => ['30%', '90%'], []);
+  const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage]);
 
 
   const handleIndicatorPress = useCallback(() => {
@@ -110,10 +111,6 @@ export default function DashboardPage() {
 
   return (
     <View style={styles.container}>
-      {
-        isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
-      }
-
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {userWidgets.map((item, index) => (
           <View style={styles.itemContainerScroll} key={index}>

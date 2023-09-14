@@ -1,8 +1,7 @@
-import { Text, View, StyleSheet, Image } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { View, StyleSheet, Image } from 'react-native'
+import React, { useState } from 'react'
 import axios from 'axios';
 import Infos from '../Components/Infos';
-import WeatherWidget from '../Components/WeatherWidget';
 
 export default function ProfilePage({ navigation, route }) {
 
@@ -52,7 +51,6 @@ export default function ProfilePage({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
     marginTop: 10,
   },
   infos: {
@@ -62,11 +60,12 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
-    marginLeft: 10,
-    marginRight: 10,
+    marginTop: 50,
+    marginBottom: 50,
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#000',
+    alignSelf: 'center'
   },
   widget: {
     padding: 10,

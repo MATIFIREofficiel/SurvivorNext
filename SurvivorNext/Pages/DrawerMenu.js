@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react';
 
-
 import ProfileDetailScreen from './ProfileDetailsScreen.js';
 import TrombinoscopeScreen from './Trombinoscope.js';
 import ProfilePage from './ProfilePage.js';
 import DeveloppementScreen from './DeveloppementScreen.js';
 import AdminPanel from './AdminPanel.js';
 import isAdmin from '../Components/isAdmin.js';
+import CustomDrawerHeader from '../Components/CustomDrawerHeader';
 
 import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
@@ -90,21 +90,26 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
   const {
     appColor,
     setAppColor,
+    setAdmin,
   } = useAppContext();
 
   useEffect(() => {
     async function checkAdminStatus() {
       const isAdminResult = await isAdmin(apiUser);
       setIsAdminUser(isAdminResult);
+      setAdmin(isAdminResult);
     }
     checkAdminStatus();
   }, [apiUser]);
 
   return (
     <NavigationContainer style={styles.container}>
-      <Drawer.Navigator initialRouteName="trombinoscope" screenOptions={{
-        drawerActiveTintColor: appColor,
-        drawerInactiveTintColor: "#ccc",
+      <Drawer.Navigator
+        drawerContent={props => <CustomDrawerHeader {...props}
+        initialParams={apiUser}/>}
+        screenOptions={{
+          drawerActiveTintColor: appColor,
+          drawerInactiveTintColor: '#ccc',
       }}>
         <Drawer.Screen name="Trombinoscope" component={ProfileStack}
           initialParams={apiUser}
@@ -130,34 +135,12 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 />
               ),
             }} />
-        <Drawer.Screen name="Notifications" component={DeveloppementScreen}
-          options={
-            {
-              drawerIcon: ({ focused, size }) => (
-                <Ionicons
-                  name="ios-notifications"
-                  size={size}
-                  color={focused ? appColor : '#ccc'}
-                />
-              ),
-            }} />
         <Drawer.Screen name="Dashboard" component={DashboardPage}
           options={
             {
               drawerIcon: ({ focused, size }) => (
                 <Ionicons
                   name="grid"
-                  size={size}
-                  color={focused ? appColor : '#ccc'}
-                />
-              ),
-            }} />
-        <Drawer.Screen name="Chat" component={DeveloppementScreen}
-          options={
-            {
-              drawerIcon: ({ focused, size }) => (
-                <Ionicons
-                  name="chatbubbles"
                   size={size}
                   color={focused ? appColor : '#ccc'}
                 />

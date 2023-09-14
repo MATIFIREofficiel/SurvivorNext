@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    borderRadius: 10,
   },
   header: {
     fontSize: 18,

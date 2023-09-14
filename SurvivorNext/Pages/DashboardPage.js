@@ -41,10 +41,12 @@ function UserWeatherWidget(props) {
 
   return (
     <View>
-      <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
+      { isWeatherClicked &&
+        <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
         onChangeText={handleCityChange}
         value={city}
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, display: isWeatherClicked ? 'flex' : 'none' }} />
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1}} />
+      }
 
       <TouchableOpacity onPress={() => openKeyboard(Widget)}>
         <Widget city={city} />
@@ -59,7 +61,7 @@ export default function DashboardPage() {
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
   const [userWidgets, setUserWidgets] = useState([]);
-  const snapPoints = useMemo(() => ['30%', '90%'], []);
+  const snapPoints = useMemo(() => ['35%', '80%'], []);
   const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage, FactPage]);
 
 
@@ -105,7 +107,7 @@ export default function DashboardPage() {
 
 
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetRef.current.snapToIndex(0);
+    bottomSheetRef.current.snapToIndex(1);
     setModalVisible(true);
   }, []);
 

@@ -47,6 +47,7 @@ const JokeApp = () => {
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 10,
     flex: 1,
     height: 255,
     justifyContent: 'center',

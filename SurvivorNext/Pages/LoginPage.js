@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import axios from "axios";
 
+import { useAppContext } from '../AppContext';
+
 function login_request(email, password, { setIsSignedIn, setApiUser, setIsError })
 {
     const url = process.env.REACT_APP_API_URL + '/login';
@@ -47,6 +49,40 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     const [errorMessage, setErrorMessage] = useState(null);
     const [isError, setIsError] = useState(false);
 
+    const {
+        appColor,
+        setAppColor,
+    } = useAppContext();
+
+    const color = appColor;
+    const dynamicStyles = {
+        title: {
+            marginBottom: 10,
+            color: appColor,
+            fontSize: 35,
+            fontWeight: 'bold',
+        },
+        inputView: {
+            backgroundColor: 'white',
+            borderRadius: 30,
+            borderColor: appColor,
+            borderWidth: 1,
+            width: "70%",
+            height: 45,
+            marginBottom: 20,
+        },
+        login: {
+            width:"80%",
+            borderRadius: 25,
+            height: 50,
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 10,
+            marginBottom: 10,
+            backgroundColor: appColor,
+        },
+    };
+
     const handleLoginPress = () => {
         login_request(email, password, {setIsSignedIn, setApiUser, setIsError});
         setEmail("");
@@ -55,9 +91,9 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     return (
         <View style={styles.container}>
             <View style={styles.box}></View>
-            <Text style={styles.title}>LOGIN</Text>
+            <Text style={dynamicStyles.title}>LOGIN</Text>
             <StatusBar style="auto" />
-                <View style={styles.inputView}>
+                <View style={dynamicStyles.inputView}>
                 <TextInput
                 style={styles.TextInput}
                 placeholder="Email"
@@ -68,7 +104,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 onChangeText={setEmail}
                 />
             </View>
-            <View style={styles.inputView}>
+            <View style={dynamicStyles.inputView}>
                 <TextInput
                 style={styles.TextInput}
                 placeholder="Password"
@@ -83,16 +119,13 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
             <TouchableOpacity>
                 <Text style={styles.forgot_button}>Forgot password?</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.login} onPress={handleLoginPress}>
+            <TouchableOpacity style={dynamicStyles.login} onPress={handleLoginPress}>
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
             {isError ? (<Text style={styles.errorText}>Incorrect username or password</Text>) : null}
         </View>
     );
 }
-
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -108,12 +141,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         position: 'absolute',
     },
-    title: {
-        marginBottom: 10,
-        color: '#6F9EEB',
-        fontSize: 35,
-        fontWeight: 'bold',
-    },
     errorText: {
         color: 'red',
         fontSize: 16,
@@ -121,15 +148,6 @@ const styles = StyleSheet.create({
     },
     loginLogo: {
         marginBottom: 40,
-    },
-    inputView: {
-        backgroundColor: 'white',
-        borderRadius: 30,
-        borderColor: '#6F9EEB',
-        borderWidth: 1,
-        width: "70%",
-        height: 45,
-        marginBottom: 20,
     },
     TextInput: {
         height: 50,
@@ -139,16 +157,6 @@ const styles = StyleSheet.create({
     forgot_button: {
         height: 30,
         marginBottom: 20,
-    },
-    login: {
-        width:"80%",
-        borderRadius: 25,
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: "#6F9EEB",
     },
     loginText: {
         color: 'white',

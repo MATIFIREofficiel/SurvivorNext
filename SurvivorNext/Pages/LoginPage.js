@@ -66,6 +66,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 value={email}
                 multiline={true}
                 onChangeText={setEmail}
+                onSubmitEditing={handleLoginPress}
                 />
             </View>
             <View style={styles.inputView}>
@@ -74,10 +75,10 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 placeholder="Password"
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                caretHidden={true}
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
+                onSubmitEditing={handleLoginPress}
                 />
             </View>
             <TouchableOpacity>

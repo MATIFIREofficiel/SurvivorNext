@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import { useAppContext } from '../AppContext';
 
 LocaleConfig.locales['en'] = {
     monthNames: [
@@ -23,12 +24,22 @@ LocaleConfig.locales['en'] = {
 };
 
 LocaleConfig.defaultLocale = 'en';
-    
+
 export default function CalendarPage() {
     const [selected, setSelected] = useState('');
+    const [calendarKey, setCalendarKey] = useState(Date.now().toString());
+
+    useEffect(() => {
+        setCalendarKey(Date.now().toString());
+    }, [selected]);
+
+    const {
+        appColor,
+    } = useAppContext();
 
     return (
         <Calendar
+            key={calendarKey}
             onDayPress={day => {setSelected(day.dateString);}}
             markedDates={{[selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}}}
             style={{
@@ -39,7 +50,11 @@ export default function CalendarPage() {
                 calendarBackground: '#222',
                 dayTextColor: '#fff',
                 textDisabledColor: '#444',
-                monthTextColor: '#888'
+                monthTextColor: appColor,
+                textSectionTitleColor: appColor,
+                selectedDayBackgroundColor: appColor,
+                todayTextColor: appColor,
+                arrowColor: appColor,
             }}
         />
     )

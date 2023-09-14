@@ -41,7 +41,6 @@ export default function ProfileDetailScreen({ navigation, route }) {
           }}
           style={styles.image} />
         <Infos style={styles.infos} infos={infos} access_token={access_token} />
-        
       </View>
   )
 }

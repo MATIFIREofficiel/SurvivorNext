@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useAppContext } from '../AppContext';
 
 const JokeApp = () => {
   const [joke, setJoke] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+
+  const {
+    appColor,
+  } = useAppContext();
+
+  const dynamicStyles = {
+    button: {
+      backgroundColor: appColor,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 5,
+    },
+  };
 
   const fetchJoke = async () => {
     try {
@@ -20,7 +34,7 @@ const JokeApp = () => {
     <View style={styles.container}>
       <Text style={styles.header}>Jokes</Text>
       <TouchableOpacity
-        style={styles.button}
+        style={dynamicStyles.button}
         onPress={fetchJoke}
       >
         <Text style={styles.buttonText}>New joke</Text>
@@ -58,12 +72,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20,
-  },
-  button: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
   },
   buttonText: {
     color: 'white',

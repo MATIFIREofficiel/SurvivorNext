@@ -7,6 +7,7 @@ import CurrencyConverter from '../Components/DeviseConvertWidget.js';
 import JokePage from '../Components/JokeWidget.js';
 import FactPage from '../Components/FactWidget';
 import { Ionicons } from '@expo/vector-icons';
+import { useAppContext } from '../AppContext';
 
 
 function RenderItemScroll (props) {
@@ -111,7 +112,11 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
+  const {
+    appColor,
+  } = useAppContext();
 
+    console.log(userWidgets);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -127,7 +132,7 @@ export default function DashboardPage() {
       </ScrollView>
 
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
-        <Ionicons name="add-circle-outline" size={60} color="#4C96EB" />
+        <Ionicons name="add-circle-outline" size={60} color={appColor} />
       </TouchableOpacity>
       <BottomSheet
         ref={bottomSheetRef}
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: '#E5E7E6',
+    backgroundColor: '#E5E76',
   },
 
   itemContainer: {

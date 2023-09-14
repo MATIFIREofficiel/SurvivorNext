@@ -12,19 +12,26 @@ import {
   Button,
 } from 'react-native';
 
+import { useAppContext } from '../AppContext';
+
 export default function AdminPanel() {
   const buttonColors = ['red', 'orange', 'yellow', 'blue', 'indigo', 'violet', 'purple', 'magenta', 'lime']; // Couleurs des boutons
-  const [selectedColor, setSelectedColor] = useState('undefined');
+
+  const {
+    appColor,
+    setAppColor,
+    companyName,
+    setCompanyName,
+  } = useAppContext();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [companyName, setCompanyName] = useState('');
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
   const handleButtonPress = (color) => {
-    setSelectedColor((prevColor) => (prevColor === color ? 'undefined' : color));
-    console.log(`Button color : ${selectedColor}`);
+    setAppColor((prevColor) => (prevColor === color ? '#6F9EEB' : color));
+    console.log(`Button color : ${appColor}`);
   };
 
   const handleCompanyNameChange = (text) => {
@@ -86,7 +93,7 @@ export default function AdminPanel() {
             style={[
               styles.button,
               { backgroundColor: color },
-              selectedColor === color ? { borderWidth: 7, borderColor: 'black' } : { borderWidth: 2, borderColor: 'black' },
+              appColor === color ? { borderWidth: 7, borderColor: 'black' } : { borderWidth: 2, borderColor: 'black' },
             ]}
             onPress={() => handleButtonPress(color)}
           >

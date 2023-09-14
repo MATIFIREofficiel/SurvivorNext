@@ -60,7 +60,7 @@ export default function DashboardPage() {
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
   const [userWidgets, setUserWidgets] = useState([]);
-  const snapPoints = useMemo(() => ['30%', '90%'], []);
+  const snapPoints = useMemo(() => ['35%', '80%'], []);
   const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage]);
 
 
@@ -106,7 +106,7 @@ export default function DashboardPage() {
 
 
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetRef.current.snapToIndex(0);
+    bottomSheetRef.current.snapToIndex(1);
     setModalVisible(true);
   }, []);
 

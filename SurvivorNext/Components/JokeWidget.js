@@ -47,11 +47,12 @@ const JokeApp = () => {
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 10,
     flex: 1,
     height: 255,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
   header: {
     fontSize: 18,

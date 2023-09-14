@@ -4,10 +4,10 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
 import { Ionicons } from '@expo/vector-icons';
+import { useAppContext } from '../AppContext';
 
-
-export default function DashboardPage() {
-
+export default function DashboardPage()
+{
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
 
@@ -57,6 +57,10 @@ export default function DashboardPage() {
     setModalVisible(true);
   }, []);
 
+  const {
+    appColor,
+  } = useAppContext();
+
     console.log(userWidgets);
   return (
     <View style={styles.container}>
@@ -73,7 +77,7 @@ export default function DashboardPage() {
       />
 
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
-        <Ionicons name="add-circle-outline" size={60} color="#4C96EB" />
+        <Ionicons name="add-circle-outline" size={60} color={appColor} />
       </TouchableOpacity>
       <BottomSheet
         ref={bottomSheetRef}
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: '#E5E7E6',
+    backgroundColor: '#E5E76',
   },
 
   itemContainer: {

@@ -9,6 +9,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import { useAppContext } from '../AppContext';
 
 import EUR from '../Pages/Devises/devisesEUR.json';
 import USD from '../Pages/Devises/devisesUSD.json';
@@ -36,6 +37,18 @@ export default function CurrencyConverter() {
 
   const buttonRef = useRef(null);
   const [buttonPosition, setButtonPosition] = useState({});
+  const {
+    appColor,
+  } = useAppContext();
+
+  const dynamicStyles = {
+    convertButton: {
+      backgroundColor: appColor,
+      borderRadius: 5,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+    },
+  };
 
   const getButtonPosition = () => {
     buttonRef.current.measureInWindow((x, y, width, height) => {
@@ -201,7 +214,7 @@ export default function CurrencyConverter() {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        style={styles.convertButton}
+        style={dynamicStyles.convertButton}
         onPress={convertCurrency}
         disabled={loading}
       >
@@ -275,12 +288,6 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgray',
     width: '100%',
     alignItems: 'center',
-  },
-  convertButton: {
-    backgroundColor: 'blue',
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
   },
   convertButtonText: {
     color: 'white',

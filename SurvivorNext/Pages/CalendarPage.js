@@ -22,7 +22,7 @@ LocaleConfig.locales['en'] = {
     today: "Today"
 };
 
-LocaleConfig.defaultLocale = 'fr';
+LocaleConfig.defaultLocale = 'en';
     
 export default function CalendarPage() {
     const [selected, setSelected] = useState('');

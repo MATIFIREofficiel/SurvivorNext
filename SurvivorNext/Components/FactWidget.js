@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useAppContext } from '../AppContext';
 
 const FactApp = () => {
     const [fact, setFact] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
 
+    const {
+        appColor,
+    } = useAppContext();
+
+    const dynamicStyles = {
+        button: {
+            backgroundColor: appColor,
+            paddingVertical: 10,
+            paddingHorizontal: 20,
+            borderRadius: 5,
+        },
+    };
     const fetchFact = async () => {
         try {
             const response = await axios.get('https://uselessfacts.jsph.pl/random.json');
@@ -20,7 +33,7 @@ const FactApp = () => {
         <View style={styles.container}>
             <Text style={styles.header}>Facts</Text>
             <TouchableOpacity
-                style={styles.button}
+                style={dynamicStyles.button}
                 onPress={fetchFact}
             >
                 <Text style={styles.buttonText}>New fact</Text>
@@ -58,12 +71,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 20,
-    },
-    button: {
-        backgroundColor: 'blue',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 5,
     },
     buttonText: {
         color: 'white',

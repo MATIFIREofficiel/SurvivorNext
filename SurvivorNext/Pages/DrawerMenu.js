@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import DashboardPage from './DashboardPage.js';
 import { useAppContext } from '../AppContext';
+import CalendarPage from './CalendarPage.js';
 
 const Drawer = createDrawerNavigator();
 
@@ -118,7 +119,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
               ),
             }} />
         <Drawer.Screen name="Profile" component={ProfilePage}
-          initialParams={[apiUser, 74]}
+          initialParams={[apiUser]}
           options={
             {
               drawerIcon: ({ focused, size }) => (
@@ -162,7 +163,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 />
               ),
             }} />
-        <Drawer.Screen name="Calendar" component={DeveloppementScreen}
+        <Drawer.Screen name="Calendar" component={CalendarPage}
           options={
             {
               drawerIcon: ({ focused, size }) => (

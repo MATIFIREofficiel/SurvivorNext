@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-const WeatherWidget = ({ city="Paris", apiKey="95c3a0ad67e9a863db54f6d882f56804" }) => {
+const WeatherWidget = ({ city = "Paris", apiKey = "95c3a0ad67e9a863db54f6d882f56804" }) => {
   const [weatherData, setWeatherData] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
-      )
-      .then((response) => {
-        setWeatherData(response.data);
-      })
-      .catch((error) => {
+  axios
+    .get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+    )
+    .then((response) => {
+      setWeatherData(response.data);
+    })
+    .catch((error) => {
+      if (error.response.status === 404)
+        return;
+      else
         console.error('Error fetching weather data: ', error);
-      });
-  }, [city, apiKey]);
+    });
+
 
   if (!weatherData) {
     return null;
@@ -46,6 +48,9 @@ const WeatherWidget = ({ city="Paris", apiKey="95c3a0ad67e9a863db54f6d882f56804"
 
 const styles = StyleSheet.create({
   container: {
+    height: 250,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 10,
     alignItems: 'center',
   },
   city: {

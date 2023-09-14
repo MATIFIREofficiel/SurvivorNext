@@ -1,26 +1,75 @@
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import WeatherWidget from '../Components/WeatherWidget';
+import CurrencyConverter from '../Components/DeviseConvertWidget.js';
+import JokePage from '../Components/JokeWidget.js';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppContext } from '../AppContext';
 
-export default function DashboardPage()
-{
+
+function RenderItemScroll (props) {
+  const Widget = props.item;
+
+  return (
+    <Widget />
+  );
+};
+
+
+function UserWeatherWidget(props) {
+  const inputRef = useRef(null);
+  const [isWeatherClicked, setIsWeatherClicked] = useState(false);
+
+  const Widget = props.item;
+  const [city, setCity] = useState('paris');
+
+  const openKeyboard = (item) => {
+    if (item.name === "WeatherWidget") {
+      setIsWeatherClicked(true);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  };
+
+  const handleCityChange = useCallback((text) => {
+    setCity(text);
+  }, []);
+
+
+  return (
+    <View>
+      { isWeatherClicked &&
+        <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
+        onChangeText={handleCityChange}
+        value={city}
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1}} />
+      }
+
+      <TouchableOpacity onPress={() => openKeyboard(Widget)}>
+        <Widget city={city} />
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+
+export default function DashboardPage() {
+
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
+  const [userWidgets, setUserWidgets] = useState([]);
+  const snapPoints = useMemo(() => ['35%', '80%'], []);
+  const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage]);
+
 
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
     bottomSheetRef.current.close();
   }, []);
 
-  const [widgets, setWidgets] = useState([WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget, WeatherWidget]);
-
-  const [userWidgets, setUserWidgets] = useState([]);
-
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
 
   const handleSheetChanges = useCallback((index) => {
     console.log('handleSheetChanges', index);
@@ -31,20 +80,19 @@ export default function DashboardPage()
     return (
       <View style={styles.itemContainer}>
         <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
-          <Widget />
+          {Widget.name === "WeatherWidget" ? <Widget city={Widget.city} /> : <Widget />}
         </TouchableOpacity>
       </View>
     );
-  }, []);
+  }, [userWidgets]);
 
-  const renderItemDashboard = useCallback(({ item }) => {
-    const Widget = item;
-    return (
-      <View style={styles.itemContainer}>
-          <Widget />
-      </View>
+  const removeWidget = (widgetToRemove) => {
+    setUserWidgets((prevUserWidgets) =>
+      prevUserWidgets.filter((widget) => widget !== widgetToRemove)
     );
-  }, []);
+  };
+
+
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
@@ -52,8 +100,14 @@ export default function DashboardPage()
   }, []);
 
 
+  const submitFunction = () => {
+    console.log("submitFunction");
+    console.log(city);
+  }
+
+
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetRef.current.snapToIndex(0);
+    bottomSheetRef.current.snapToIndex(1);
     setModalVisible(true);
   }, []);
 
@@ -64,17 +118,17 @@ export default function DashboardPage()
     console.log(userWidgets);
   return (
     <View style={styles.container}>
-      {
-        isModalVisible && <TouchableOpacity style={styles.overlay} onPress={handleCloseBottomSheet} />
-      }
-
-      <FlatList
-        data={userWidgets}
-        refreshing={true}
-        renderItem={renderItemDashboard}
-        numColumns={2}
-        columnWrapperStyle={{ justifyContent: 'space-between' }}
-      />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {userWidgets.map((item, index) => (
+          <View style={styles.itemContainerScroll} key={index}>
+            {item.name === "WeatherWidget" ? (
+              <UserWeatherWidget item={item} />
+            ) : (
+              <RenderItemScroll item={item}/>
+            )}
+          </View>
+        ))}
+      </ScrollView>
 
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
         <Ionicons name="add-circle-outline" size={60} color={appColor} />
@@ -83,10 +137,9 @@ export default function DashboardPage()
         ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
         detached={true}
         enablePanDownToClose={true}
-        handleIndicatorPress={handleIndicatorPress}
+        style={{ zIndex: 1 }}
       >
         <FlatList
           data={widgets}
@@ -110,6 +163,7 @@ const styles = StyleSheet.create({
 
   itemContainer: {
     width: '50%',
+    height: '30%',
     padding: 12,
   },
   overlay: {
@@ -124,4 +178,16 @@ const styles = StyleSheet.create({
     bottom: 40,
     right: 20,
   },
+
+  scrollContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  itemContainerScroll: {
+    width: '48%',
+    marginBottom: 16,
+  },
+
 });

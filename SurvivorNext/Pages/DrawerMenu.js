@@ -77,7 +77,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
               ),
             }} />
         <Drawer.Screen name="Profile" component={ProfilePage}
-          initialParams={[apiUser, 74]}
+          initialParams={[apiUser]}
           options={
             {
               drawerIcon: ({ focused, size }) => (

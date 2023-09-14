@@ -103,6 +103,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 multiline={true}
                 onChangeText={setEmail}
                 onSubmitEditing={handleLoginPress}
+                testID="email-input"
                 />
             </View>
             <View style={dynamicStyles.inputView}>
@@ -115,12 +116,13 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 value={password}
                 onChangeText={setPassword}
                 onSubmitEditing={handleLoginPress}
+                testID="password-input"
                 />
             </View>
             <TouchableOpacity>
                 <Text style={styles.forgot_button}>Forgot password?</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={dynamicStyles.login} onPress={handleLoginPress}>
+            <TouchableOpacity style={dynamicStyles.login} onPress={handleLoginPress} testID="login-button">
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
             {isError ? (<Text style={styles.errorText}>Incorrect username or password</Text>) : null}

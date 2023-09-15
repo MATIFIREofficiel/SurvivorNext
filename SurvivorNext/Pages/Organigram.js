@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
     image: {
         marginTop: 10,
         borderRadius: 20,
-        width: 100,
-        height: 100,
+        width: 65,
+        height: 65,
     },
     text: {
-        fontSize: 16,
-        width: 100,
+        fontSize: 13,
+        width: 65,
         textAlign: 'center',
     },
     verticalLine: {

@@ -437,7 +437,7 @@
         "birth_date": "",
         "gender": "",
         "work": "",
-        "subordinates": []
+        "subordinates": [ 65, 66, 67]
     }, 
     {
         "email": "lily.sanchez@masurao.jp",

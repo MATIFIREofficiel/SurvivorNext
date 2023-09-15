@@ -125,9 +125,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
                 testID="password-input"
                 />
             </View>
-            <TouchableOpacity>
-                <Text style={styles.forgot_button}>Forgot password?</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={dynamicStyles.login} onPress={handleLoginPress} testID="login-button">
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
@@ -162,10 +159,6 @@ const styles = StyleSheet.create({
         height: 50,
         flex: 1,
         padding: 10,
-    },
-    forgot_button: {
-        height: 30,
-        marginBottom: 20,
     },
     loginText: {
         color: 'white',

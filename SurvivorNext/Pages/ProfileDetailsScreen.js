@@ -20,7 +20,7 @@ export default function ProfileDetailScreen({ navigation, route }) {
       const response = await axios.get(url, { headers });
       setinfos(response.data);
     } catch (error) {
-      console.error(error.status);
+      console.log(error.status);
       return [];
     }
   };

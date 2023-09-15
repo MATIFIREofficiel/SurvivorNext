@@ -16,7 +16,7 @@ const WeatherWidget = ({ city = "Paris", apiKey = "95c3a0ad67e9a863db54f6d882f56
       if (error.response.status === 404)
         return;
       else
-        console.error('Error fetching weather data: ', error);
+        console.log('Error fetching weather data: ', error);
     });
 
 

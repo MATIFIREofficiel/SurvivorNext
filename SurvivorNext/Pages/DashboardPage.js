@@ -93,6 +93,12 @@ export default function DashboardPage() {
   }, []);
 
 
+  const widgetFlatListPressed = (Widget) => {
+    console.log("widgetFlatListPressed");
+    setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]);
+    bottomSheetRef.current.close();
+  }
+
   const handleSheetChanges = useCallback((index) => {
     console.log('handleSheetChanges', index);
   }, []);
@@ -101,7 +107,7 @@ export default function DashboardPage() {
     const Widget = item;
     return (
       <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={() => { setUserWidgets((prevUserWidgets) => [...prevUserWidgets, Widget]); }}>
+        <TouchableOpacity onPress={() => { widgetFlatListPressed(Widget) }}>
           {Widget.name === "WeatherWidget" ? <Widget city={Widget.city} /> : <Widget />}
         </TouchableOpacity>
       </View>

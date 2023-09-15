@@ -109,7 +109,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
         initialParams={apiUser}/>}
         screenOptions={{
           drawerActiveTintColor: appColor,
-          drawerInactiveTintColor: '#ccc',
+          drawerInactiveTintColor: 'rgba(0,0,0,0.5)',
       }}>
         <Drawer.Screen name="Trombinoscope" component={ProfileStack}
           initialParams={apiUser}
@@ -119,7 +119,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
 
                   name={focused ? "people" : "people-outline"}
                   size={size}
-                  color={focused ? appColor : '#ccc'}
+                  color={focused ? appColor : 'rgba(0,0,0,0.5)'}
                 />
               ),
             }} />
@@ -131,7 +131,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="person"
                   size={size}
-                  color={focused ? appColor : '#ccc'}
+                  color={focused ? appColor : 'rgba(0,0,0,0.5)'}
                 />
               ),
             }} />
@@ -142,7 +142,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="grid"
                   size={size}
-                  color={focused ? appColor : '#ccc'}
+                  color={focused ? appColor : 'rgba(0,0,0,0.5)'}
                 />
               ),
             }} />
@@ -153,7 +153,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="calendar"
                   size={size}
-                  color={focused ? appColor : '#ccc'}
+                  color={focused ? appColor : 'rgba(0,0,0,0.5)'}
                 />
               ),
             }} />
@@ -166,7 +166,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
               <Ionicons
                 name="settings"
                 size={size}
-                color={focused ? appColor : '#ccc'}
+                color={focused ? appColor : 'rgba(0,0,0,0.5)'}
               />
             ),
           }}
@@ -180,7 +180,7 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
                   name="color-wand"
                   size={size}
-                  color={focused ? appColor : '#ccc'}
+                  color={focused ? appColor : 'rgba(0,0,0,0.5)'}
                 />
               ),
             }}

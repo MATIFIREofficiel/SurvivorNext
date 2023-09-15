@@ -11,6 +11,7 @@ export function AppProvider({ children }) {
     const [companyName, setCompanyName] = useState('Company Name');
     const [Admin, setAdmin] = useState(false);
     const [userWidgets, setUserWidgets] = useState([]);
+    const [localUri, setLocalUri] = useState("");
 
     const contextValue = {
         appColor,
@@ -21,6 +22,8 @@ export function AppProvider({ children }) {
         setAdmin,
         userWidgets,
         setUserWidgets,
+        setLocalUri,
+        localUri,
     };
 
     return (

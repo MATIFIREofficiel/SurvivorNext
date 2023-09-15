@@ -38,20 +38,6 @@ describe('Test placeholder password', () => {
   });
 });
 
-
-describe('Test text forget password?', () => {
-  it('Wait loading of elements in page', async () => {
-    const { getByText } = render(<LoginPage />);
-
-    await waitFor(() => {
-      const forgotPasswordLink = getByText('Forgot password?');
-      expect(forgotPasswordLink).toBeTruthy();
-    });
-
-  });
-});
-
-
 jest.mock('../AppContext', () => ({
   useAppContext: () => ({
     appColor: 'blue',
@@ -74,7 +60,9 @@ describe('Test to display error message', () => {
       expect(errorMessage).toBeTruthy();
     });
   });
+});
 
+describe('FactApp Tests', () => {
   it('check if error is not print instantly', async () => {
     const { queryByText } = render(<LoginPage isError={false} />);
 

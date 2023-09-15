@@ -67,6 +67,7 @@ export default function AdminPanel() {
               value={companyName}
               onChangeText={setCompanyName}
               placeholder="Undefined"
+              testID='modal-text-input'
             />
             <Button
               title="Save"

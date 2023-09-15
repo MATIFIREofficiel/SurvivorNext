@@ -7,6 +7,7 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
+    Button,
 } from 'react-native';
 import axios from "axios";
 
@@ -21,7 +22,7 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         'Content-Type': 'application/json',
     };
     const data = {
-        email: email.toLowerCase(),
+        email: email.toLowerCas(),
         password: password,
     };
 
@@ -95,16 +96,25 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
         setEmail("");
         setPassword("");
     };
+
+    const [language, setLanguage] = useState('fr');
+    const toggleLanguage = () => {
+        const newLanguage = language === 'fr' ? 'en' : 'fr';
+        setLanguage(newLanguage);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.box}></View>
-            <Text style={dynamicStyles.company}>{companyName}</Text>
-            <Text style={dynamicStyles.title}>LOGIN</Text>
+            <Text style={dynamicStyles.company}>
+                {language === 'fr' && companyName === "Undefined" ? "Indéfini" : companyName}
+            </Text>
+            {language === "fr" ? <Text style={dynamicStyles.title}>Connexion au compte</Text> : <Text style={dynamicStyles.title}>Login</Text>}
             <StatusBar style="auto" />
                 <View style={dynamicStyles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Email"
+                placeholder={language === "fr" ? "Adresse mail" : "Email"}
                 placeholderTextColor="#003f5c"
                 textAlign="center"
                 value={email}
@@ -116,22 +126,23 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
             <View style={dynamicStyles.inputView}>
                 <TextInput
                 style={styles.TextInput}
-                placeholder="Password"
+                placeholder={language === "fr" ? "Mot de passe" : "Password"}
                 placeholderTextColor="#003f5c"
                 textAlign="center"
-                secureTextEntry={true}
+                secureTextEntry={password === "" ? false :true}
                 value={password}
                 onChangeText={setPassword}
                 onSubmitEditing={handleLoginPress}
                 />
             </View>
-            <TouchableOpacity>
-                <Text style={styles.forgot_button}>Forgot password?</Text>
+            <TouchableOpacity onPress={toggleLanguage}>
+                {language === "fr" ? <Text style={styles.forgot_button}>Changer la langue</Text> : <Text style={styles.forgot_button}>Changer </Text> }
             </TouchableOpacity>
+            <Text>Langue sélectionnée : {language}</Text>
             <TouchableOpacity style={dynamicStyles.login} onPress={handleLoginPress}>
-                <Text style={styles.loginText}>LOGIN</Text>
+                {language === "fr" ? <Text style={styles.loginText}>LOGIN</Text> : <Text style={styles.loginText}>CONNEXION</Text> }
             </TouchableOpacity>
-            {isError ? (<Text style={styles.errorText}>Incorrect username or password</Text>) : null}
+            {isError ? (language === "fr" ? (<Text style={styles.errorText}>Incorrect Crediential</Text>) : (<Text style={styles.errorText}>Identifiant ou mot de passe incorrect</Text>)) : null}
         </View>
     );
 }
@@ -165,7 +176,6 @@ const styles = StyleSheet.create({
     },
     forgot_button: {
         height: 30,
-        marginBottom: 20,
     },
     loginText: {
         color: 'white',

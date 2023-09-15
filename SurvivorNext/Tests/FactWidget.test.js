@@ -16,15 +16,29 @@ describe('FactApp Tests', () => {
     expect(buttonText).toBeTruthy();
   });
 
+  it('affiche le texte du fait', async () => {
+    const { getByText, getByTestId } = render(<FactApp />);
+    const fetchFactButton = getByText('New fact');
+    fireEvent.press(fetchFactButton);
+
+    await waitFor(() => {
+      const factText = getByTestId('fact-text');
+      expect(factText).toBeTruthy();
+    });
+  });
+
   it('ferme la modal', async () => {
     const { getByText, getByTestId, queryByTestId } = render(<FactApp />);
     const fetchFactButton = getByText('New fact');
     fireEvent.press(fetchFactButton);
 
     await waitFor(() => {
-      const closeButton = getByText('Close');
-      fireEvent.press(closeButton);
+      const factText = getByTestId('fact-text');
+      expect(factText).toBeTruthy();
     });
+
+    const closeButton = getByText('Close');
+    fireEvent.press(closeButton);
 
     await waitFor(() => {
       const modal = queryByTestId('modal');

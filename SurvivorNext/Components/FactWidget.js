@@ -45,7 +45,7 @@ const FactApp = () => {
                 onRequestClose={() => setModalVisible(false)}
             >
                 <View style={styles.modalContainer}>
-                    <Text style={styles.factText}>{fact}</Text>
+                    <Text testID='fact-text' style={styles.factText}>{fact}</Text>
                     <TouchableOpacity
                         style={styles.closeButton}
                         onPress={() => setModalVisible(false)}

@@ -1,0 +1,739 @@
+[
+    {
+        "email": "billy.bob@masurao.jp",
+        "id": 1,
+        "name": "Billy",
+        "surname": "Bob",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": [ 2, 6 ]
+    }, 
+    {
+        "email": "john.doe@masurao.jp",
+        "id": 2,
+        "name": "John",
+        "surname": "Doe",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": [ 5, 9, 11]
+    }, 
+    {
+        "email": "jane.smith@masurao.jp",
+        "id": 3,
+        "name": "Jane",
+        "surname": "Smith",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "david.johnson@masurao.jp",
+        "id": 4,
+        "name": "David",
+        "surname": "Johnson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sarah.anderson@masurao.jp",
+        "id": 5,
+        "name": "Sarah",
+        "surname": "Anderson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "michael.brown@masurao.jp",
+        "id": 6,
+        "name": "Michael",
+        "surname": "Brown",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emily.wilson@masurao.jp",
+        "id": 7,
+        "name": "Emily",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "daniel.wilson@masurao.jp",
+        "id": 8,
+        "name": "Daniel",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "samantha.thompson@masurao.jp",
+        "id": 9,
+        "name": "Samantha",
+        "surname": "Thompson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "james.miller@masurao.jp",
+        "id": 10,
+        "name": "James",
+        "surname": "Miller",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "victoria.clark@masurao.jp",
+        "id": 11,
+        "name": "Victoria",
+        "surname": "Clark",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": [16, 23, 24]
+    }, 
+    {
+        "email": "alexander.lee@masurao.jp",
+        "id": 12,
+        "name": "Alexander",
+        "surname": "Lee",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "natalie.adams@masurao.jp",
+        "id": 13,
+        "name": "Natalie",
+        "surname": "Adams",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "nathan.wilson@masurao.jp",
+        "id": 14,
+        "name": "Nathan",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "isabella.roberts@masurao.jp",
+        "id": 15,
+        "name": "Isabella",
+        "surname": "Roberts",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "daniel.hall@masurao.jp",
+        "id": 16,
+        "name": "Daniel",
+        "surname": "Hall",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "oliver.evans@masurao.jp",
+        "id": 17,
+        "name": "Oliver",
+        "surname": "Evans",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emma.hernandez@masurao.jp",
+        "id": 18,
+        "name": "Emma",
+        "surname": "Hernandez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ethan.kelly@masurao.jp",
+        "id": 19,
+        "name": "Ethan",
+        "surname": "Kelly",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ava.green@masurao.jp",
+        "id": 20,
+        "name": "Ava",
+        "surname": "Green",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "lucas.wilson@masurao.jp",
+        "id": 21,
+        "name": "Lucas",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "olivia.collins@masurao.jp",
+        "id": 22,
+        "name": "Olivia",
+        "surname": "Collins",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "liam.lewis@masurao.jp",
+        "id": 23,
+        "name": "Liam",
+        "surname": "Lewis",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": [ 44, 53]
+    }, 
+    {
+        "email": "noah.lopez@masurao.jp",
+        "id": 24,
+        "name": "Noah",
+        "surname": "Lopez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "lily.mitchell@masurao.jp",
+        "id": 25,
+        "name": "Lily",
+        "surname": "Mitchell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "jacob.bell@masurao.jp",
+        "id": 26,
+        "name": "Jacob",
+        "surname": "Bell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "chloe.jenkins@masurao.jp",
+        "id": 27,
+        "name": "Chloe",
+        "surname": "Jenkins",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ethan.watson@masurao.jp",
+        "id": 28,
+        "name": "Ethan",
+        "surname": "Watson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sophia.price@masurao.jp",
+        "id": 29,
+        "name": "Sophia",
+        "surname": "Price",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "mason.ross@masurao.jp",
+        "id": 30,
+        "name": "Mason",
+        "surname": "Ross",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "amelia.howard@masurao.jp",
+        "id": 31,
+        "name": "Amelia",
+        "surname": "Howard",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "henry.turner@masurao.jp",
+        "id": 32,
+        "name": "Henry",
+        "surname": "Turner",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sophia.morgan@masurao.jp",
+        "id": 33,
+        "name": "Sophia",
+        "surname": "Morgan",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "jackson.james@masurao.jp",
+        "id": 34,
+        "name": "Jackson",
+        "surname": "James",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ava.baker@masurao.jp",
+        "id": 35,
+        "name": "Ava",
+        "surname": "Baker",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "aiden.hill@masurao.jp",
+        "id": 36,
+        "name": "Aiden",
+        "surname": "Hill",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ella.mitchell@masurao.jp",
+        "id": 37,
+        "name": "Ella",
+        "surname": "Mitchell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "carter.stewart@masurao.jp",
+        "id": 38,
+        "name": "Carter",
+        "surname": "Stewart",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emily.cooper@masurao.jp",
+        "id": 39,
+        "name": "Emily",
+        "surname": "Cooper",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "lucas.walker@masurao.jp",
+        "id": 40,
+        "name": "Lucas", 
+        "surname": "Walker",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "scarlett.thompson@masurao.jp",
+        "id": 41,
+        "name": "Scarlett",
+        "surname": "Thompson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sebastian.carter@masurao.jp",
+        "id": 42,
+        "name": "Sebastian",
+        "surname": "Carter",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "chloe.green@masurao.jp",
+        "id": 43,
+        "name": "Chloe",
+        "surname": "Green",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "jackson.richardson@masurao.jp",
+        "id": 44,
+        "name": "Jackson",
+        "surname": "Richardson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "lily.sanchez@masurao.jp",
+        "id": 45,
+        "name": "Lily",
+        "surname": "Sanchez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "henry.bell@masurao.jp",
+        "id": 46,
+        "name": "Henry",
+        "surname": "Bell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "olivia.ramirez@masurao.jp",
+        "id": 47,
+        "name": "Olivia",
+        "surname": "Collins",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "samuel.nelson@masurao.jp",
+        "id": 48,
+        "name": "Samuel",
+        "surname": "Nelson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "victoria.wilson@masurao.jp",
+        "id": 49,
+        "name": "Victoria",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "william.evans@masurao.jp",
+        "id": 50,
+        "name": "William",
+        "surname": "Evans",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emily.lopez@masurao.jp",
+        "id": 51,
+        "name": "Emily",
+        "surname": "Lopez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "michael.mitchell@masurao.jp",
+        "id": 52,
+        "name": "Michael",
+        "surname": "Mitchell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "olivia.rodriguez@masurao.jp",
+        "id": 53,
+        "name": "Olivia",
+        "surname": "Rodriguez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ethan.stewart@masurao.jp",
+        "id": 54,
+        "name": "Ethan",
+        "surname": "Stewart",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ava.cooper@masurao.jp",
+        "id": 55,
+        "name": "Ava",
+        "surname": "Cooper",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "jacob.walker@masurao.jp",
+        "id": 56,
+        "name": "Jacob",
+        "surname": "Walker",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sophia.hernandez@masurao.jp",
+        "id": 57,
+        "name": "Sophia",
+        "surname": "Hernandez",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "logan.wilson@masurao.jp",
+        "id": 58,
+        "name": "Logan",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "chloe.lee@masurao.jp",
+        "id": 59,
+        "name": "Chloe",
+        "surname": "Lee",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "aiden.white@masurao.jp",
+        "id": 60,
+        "name": "Aiden",
+        "surname": "White",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emma.parker@masurao.jp",
+        "id": 61,
+        "name": "Emma",
+        "surname": "Parker",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "lucas.garcia@masurao.jp",
+        "id": 62,
+        "name": "Lucas",
+        "surname": "Garcia",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "amelia.taylor@masurao.jp",
+        "id": 63,
+        "name": "Amelia",
+        "surname": "Taylor",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "james.morris@masurao.jp",
+        "id": 64,
+        "name": "James",
+        "surname": "Morris",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sophia.wilson@masurao.jp",
+        "id": 65,
+        "name": "Sophia",
+        "surname": "Wilson",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "benjamin.brown@masurao.jp",
+        "id": 66,
+        "name": "Benjamin",
+        "surname": "Brown",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "emily.jones@masurao.jp",
+        "id": 67,
+        "name": "Emily",
+        "surname": "Jones",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "william.davis@masurao.jp",
+        "id": 68,
+        "name": "William",
+        "surname": "Davis",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "ava.clark@masurao.jp",
+        "id": 69,
+        "name": "Ava",
+        "surname": "Clark",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "jacob.hall@masurao.jp",
+        "id": 70,
+        "name": "Jacob",
+        "surname": "Hall",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "sophia.mitchell@masurao.jp",
+        "id": 71,
+        "name": "Sophia",
+        "surname": "Mitchell",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "mason.roberts@masurao.jp",
+        "id": 72,
+        "name": "Mason",
+        "surname": "Roberts",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "chloe.hill@masurao.jp",
+        "id": 73,
+        "name": "Chloe",
+        "surname": "Hill",
+        "birth_date": "",
+        "gender": "",
+        "work": "",
+        "subordinates": []
+    }, 
+    {
+        "email": "oliver.lewis@masurao.jp",
+        "id": 74,
+        "name": "Oliver",
+        "surname": "Lewis",
+        "birth_date" : ""
+    }
+]

@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Button, View, StyleSheet } from 'react-native';
 import DashboardPage from './DashboardPage.js';
 import CalendarPage from './CalendarPage.js';
+import CountdownTimer from '../Components/CountdownTimer.js';
 
 const Drawer = createDrawerNavigator();
 
@@ -71,6 +72,17 @@ export default function DrawerMenu({ navigation, apiUser, setIsSignedIn}) {
                 <Ionicons
 
                   name={focused ? "people" : "people-outline"}
+                  size={size}
+                  color={focused ? 'blue' : '#ccc'}
+                />
+              ),
+            }} />
+        <Drawer.Screen name="Countdown" component={CountdownTimer}
+          options={
+            {
+              drawerIcon: ({ focused, size }) => (
+                <Ionicons
+                  name="timer-outline"
                   size={size}
                   color={focused ? 'blue' : '#ccc'}
                 />

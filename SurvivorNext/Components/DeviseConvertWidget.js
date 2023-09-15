@@ -180,6 +180,7 @@ export default function CurrencyConverter() {
               setSelectedCurrencyType('from');
               getButtonPosition();
             }}
+            testID="fromCurrencyButton"
           >
             <Text style={styles.currencyButtonText}>{fromCurrency}</Text>
           </TouchableOpacity>
@@ -209,6 +210,7 @@ export default function CurrencyConverter() {
             setSelectedCurrencyType('to');
             getButtonPosition();
           }}
+          testID="toCurrencyButton"
         >
           <Text style={styles.currencyButtonText}>{toCurrency}</Text>
         </TouchableOpacity>

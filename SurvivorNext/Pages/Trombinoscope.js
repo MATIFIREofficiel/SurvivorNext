@@ -81,10 +81,12 @@ export default function TrombinoscopeScreen({ navigation, route }) {
           defaultValue=''/>
         <TouchableOpacity
           onPress={() => {setIsOrganigram(!isOrganigram)}}
-          style={{width:50, height: 50, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey', marginVertical: 10,}}
+          style={{width:50, height: 50, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: 'lightgrey', marginVertical: 10,}}
         >
-          <Image style={{width: 40, height: 40}} 
-          source={require('./../assets/chart.png')} />
+          {isOrganigram
+          ? <Image style={{width: 40, height: 40}} source={require('./../assets/chart.png')} />
+          : <Image style={{width: 40, height: 40}} source={require('./../assets/trombi.png')} />
+          }
         </TouchableOpacity>
       </View>
       {isOrganigram

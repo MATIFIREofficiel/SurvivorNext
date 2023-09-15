@@ -22,7 +22,7 @@ const CustomDrawerHeader = (props) =>
         companyImage,
         Admin,
     } = useAppContext();
-    const [localUri, setLocalUri] = useState(require('../assets/logo.png'));
+    const [localUri, setLocalUri] = useState(null);
 
 
     const handleImageClick = async (takePhoto, destination) => {
@@ -49,8 +49,8 @@ const CustomDrawerHeader = (props) =>
             ? await ImagePicker.launchImageLibraryAsync(launchOptions)
             : await ImagePicker.launchImageLibraryAsync(launchOptions);
 
-        if (!result.cancelled) {
-            setLocalUri(result.uri);
+        if (!result.cancel) {
+            setLocalUri(result.assets[0].uri);
         }
     };
 
@@ -69,16 +69,29 @@ const CustomDrawerHeader = (props) =>
                 </Text>
                 { Admin === true ?
                     <TouchableOpacity onPress={handleImageClick}>
-                        <Image
-                            source={localUri}
-                            style={{
-                                alignSelf: 'center',
-                                height: 100,
-                                width: 100,
-                                resizeMode: 'center',
-                                marginBottom: 10,
-                            }}
-                        />
+                        {localUri ? (
+                            <Image
+                                source={{ uri: localUri }}
+                                style={{
+                                    alignSelf: 'center',
+                                    height: 100,
+                                    width: 100,
+                                    resizeMode: 'center',
+                                    marginBottom: 10,
+                                }}
+                            />
+                            ) : (
+                            <Image
+                                source={require('../assets/logo.png')}
+                                style={{
+                                    alignSelf: 'center',
+                                    height: 100,
+                                    width: 100,
+                                    resizeMode: 'center',
+                                    marginBottom: 10,
+                                }}
+                            />
+                            )}
                     </TouchableOpacity>
                 : <Image
                     source={localUri}

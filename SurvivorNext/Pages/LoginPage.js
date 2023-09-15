@@ -21,8 +21,8 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         'Content-Type': 'application/json',
     };
     const data = {
-        email: email.toLowerCase(),
-        password: password,
+        email:'oliver.lewis@masurao.jp',
+        password: 'password',
     };
 
     axios.post(url, data, { headers })

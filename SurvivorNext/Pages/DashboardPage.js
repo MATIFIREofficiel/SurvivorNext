@@ -28,7 +28,7 @@ function UserWeatherWidget(props) {
     appColor,
     userWidgets,
     setUserWidgets,
-  } =useAppContext();
+  } = useAppContext();
 
   const removeWidget = (widgetToRemove) => {
     setUserWidgets((prevUserWidgets) =>
@@ -62,12 +62,12 @@ function UserWeatherWidget(props) {
 
       {!isWeatherClicked &&
         <View style={styles.buttonDel}>
-            <TouchableOpacity
-              style={{ width: 40, height: 40 }}
-              onPress={() => removeWidget(Widget)}
-            >
-              <Ionicons name="remove-circle-outline" size={40} color={appColor} />
-            </TouchableOpacity>
+          <TouchableOpacity
+            style={{ width: 40, height: 40 }}
+            onPress={() => removeWidget(Widget)}
+          >
+            <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+          </TouchableOpacity>
         </View>
       }
 
@@ -146,28 +146,31 @@ export default function DashboardPage() {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {userWidgets.map((item, index) => (
-          <View style={styles.itemContainerScroll} key={index}>
-            <View style={styles.buttonDel}>
-              {item.name !== "WeatherWidget" &&
-                <TouchableOpacity
-                  style={{ width: 40, height: 40 }}
-                  title="-"
-                  onPress={() => removeWidget(item)}
-                >
-                  <Ionicons name="remove-circle-outline" size={40} color={appColor} />
-                </TouchableOpacity>
-              }
+      <View style={{height: '85%'}}>
+
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {userWidgets.map((item, index) => (
+            <View style={styles.itemContainerScroll} key={index}>
+              <View style={styles.buttonDel}>
+                {item.name !== "WeatherWidget" &&
+                  <TouchableOpacity
+                    style={{ width: 40, height: 40 }}
+                    title="-"
+                    onPress={() => removeWidget(item)}
+                  >
+                    <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+                  </TouchableOpacity>
+                }
+              </View>
+              {item.name === "WeatherWidget" ? (
+                <UserWeatherWidget item={item} userWidgets={userWidgets} />
+              ) : (
+                <RenderItemScroll item={item} />
+              )}
             </View>
-            {item.name === "WeatherWidget" ? (
-              <UserWeatherWidget item={item} userWidgets={userWidgets} />
-            ) : (
-              <RenderItemScroll item={item} />
-            )}
-          </View>
-        ))}
-      </ScrollView>
+          ))}
+        </ScrollView>
+      </View>
 
       <TouchableOpacity onPress={handlePresentModalPress} style={styles.button}>
         <Ionicons name="add-circle-outline" size={60} color={appColor} />

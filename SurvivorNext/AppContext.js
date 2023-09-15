@@ -8,7 +8,7 @@ export function useAppContext() {
 
 export function AppProvider({ children }) {
     const [appColor, setAppColor] = useState('#6F9EEB');
-    const [companyName, setCompanyName] = useState('Undefined');
+    const [companyName, setCompanyName] = useState('Company Name');
     const [Admin, setAdmin] = useState(false);
 
     const contextValue = {

@@ -23,7 +23,6 @@ function login_request(email, password, { setIsSignedIn, setApiUser, setIsError 
         password: password,
     };
 
-    console.log(url);
     axios.post(url, data, { headers })
     .then((response) => {
         console.log('Réponse de l\'API:', response.data);
@@ -44,7 +43,6 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState(null);
     const [isError, setIsError] = useState(false);
 
     const handleLoginPress = () => {

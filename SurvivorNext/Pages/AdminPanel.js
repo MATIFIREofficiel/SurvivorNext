@@ -15,7 +15,7 @@ import {
 import { useAppContext } from '../AppContext';
 
 export default function AdminPanel() {
-  const buttonColors = ['red', 'orange', 'yellow', 'blue', 'indigo', 'violet', 'purple', 'magenta', 'lime'];
+  const buttonColors = ['red', 'blue', 'green', 'pink', 'purple', 'gray', 'brown', 'magenta', 'lime'];
 
   const {
     appColor,

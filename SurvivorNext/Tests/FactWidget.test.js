@@ -15,7 +15,9 @@ describe('FactApp Tests', () => {
     const buttonText = getByText('New fact');
     expect(buttonText).toBeTruthy();
   });
+});
 
+describe('FactApp Tests', () => {
   it('affiche le texte du fait', async () => {
     const { getByText, getByTestId } = render(<FactApp />);
     const fetchFactButton = getByText('New fact');
@@ -26,7 +28,9 @@ describe('FactApp Tests', () => {
       expect(factText).toBeTruthy();
     });
   });
+});
 
+describe('FactApp Tests', () => {
   it('ferme la modal', async () => {
     const { getByText, getByTestId, queryByTestId } = render(<FactApp />);
     const fetchFactButton = getByText('New fact');

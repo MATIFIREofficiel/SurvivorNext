@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, TextInput, ScrollView, Text } from 'react-native'
 import React from 'react'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAppContext } from '../AppContext';
 
 
-function RenderItemScroll (props) {
+function RenderItemScroll(props) {
   const Widget = props.item;
 
   return (
@@ -18,13 +18,24 @@ function RenderItemScroll (props) {
   );
 };
 
-
 function UserWeatherWidget(props) {
   const inputRef = useRef(null);
   const [isWeatherClicked, setIsWeatherClicked] = useState(false);
 
   const Widget = props.item;
   const [city, setCity] = useState('paris');
+  const {
+    appColor,
+    userWidgets,
+    setUserWidgets,
+  } =useAppContext();
+
+  const removeWidget = (widgetToRemove) => {
+    setUserWidgets((prevUserWidgets) =>
+      prevUserWidgets.filter((widget) => widget !== widgetToRemove)
+    );
+  };
+
 
   const openKeyboard = (item) => {
     if (item.name === "WeatherWidget") {
@@ -42,11 +53,22 @@ function UserWeatherWidget(props) {
 
   return (
     <View>
-      { isWeatherClicked &&
+      {isWeatherClicked &&
         <TextInput ref={inputRef} onBlur={() => setIsWeatherClicked(false)}
-        onChangeText={handleCityChange}
-        value={city}
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1}} />
+          onChangeText={handleCityChange}
+          value={city}
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
+      }
+
+      {!isWeatherClicked &&
+        <View style={styles.buttonDel}>
+            <TouchableOpacity
+              style={{ width: 40, height: 40 }}
+              onPress={() => removeWidget(Widget)}
+            >
+              <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+            </TouchableOpacity>
+        </View>
       }
 
       <TouchableOpacity onPress={() => openKeyboard(Widget)}>
@@ -61,10 +83,9 @@ export default function DashboardPage() {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
-  const [userWidgets, setUserWidgets] = useState([]);
+
   const snapPoints = useMemo(() => ['35%', '80%'], []);
   const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage, FactPage]);
-
 
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
@@ -87,13 +108,12 @@ export default function DashboardPage() {
     );
   }, [userWidgets]);
 
+
   const removeWidget = (widgetToRemove) => {
     setUserWidgets((prevUserWidgets) =>
       prevUserWidgets.filter((widget) => widget !== widgetToRemove)
     );
   };
-
-
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
@@ -114,18 +134,30 @@ export default function DashboardPage() {
 
   const {
     appColor,
+    userWidgets,
+    setUserWidgets,
   } = useAppContext();
 
-    console.log(userWidgets);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {userWidgets.map((item, index) => (
           <View style={styles.itemContainerScroll} key={index}>
+            <View style={styles.buttonDel}>
+              {item.name !== "WeatherWidget" &&
+                <TouchableOpacity
+                  style={{ width: 40, height: 40 }}
+                  title="-"
+                  onPress={() => removeWidget(item)}
+                >
+                  <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+                </TouchableOpacity>
+              }
+            </View>
             {item.name === "WeatherWidget" ? (
-              <UserWeatherWidget item={item} />
+              <UserWeatherWidget item={item} userWidgets={userWidgets} />
             ) : (
-              <RenderItemScroll item={item}/>
+              <RenderItemScroll item={item} />
             )}
           </View>
         ))}
@@ -178,6 +210,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 40,
     right: 20,
+  },
+
+  buttonDel: {
+    zIndex: 1,
+    position: 'absolute',
+    top: 10,
+    right: 0,
   },
 
   scrollContainer: {

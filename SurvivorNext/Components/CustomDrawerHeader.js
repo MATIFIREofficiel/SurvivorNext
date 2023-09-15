@@ -21,9 +21,9 @@ const CustomDrawerHeader = (props) =>
         companyName,
         companyImage,
         Admin,
+        localUri,
+        setLocalUri,
     } = useAppContext();
-    const [localUri, setLocalUri] = useState(null);
-
 
     const handleImageClick = async (takePhoto, destination) => {
 
@@ -67,7 +67,7 @@ const CustomDrawerHeader = (props) =>
                 }}>
                     {companyName}
                 </Text>
-                { Admin === true ?
+                {Admin === true ? (
                     <TouchableOpacity onPress={handleImageClick}>
                         {localUri ? (
                             <Image
@@ -80,7 +80,7 @@ const CustomDrawerHeader = (props) =>
                                     marginBottom: 10,
                                 }}
                             />
-                            ) : (
+                        ) : (
                             <Image
                                 source={require('../assets/logo.png')}
                                 style={{
@@ -91,18 +91,33 @@ const CustomDrawerHeader = (props) =>
                                     marginBottom: 10,
                                 }}
                             />
-                            )}
+                        )}
                     </TouchableOpacity>
-                : <Image
-                    source={localUri}
-                    style={{
-                    alignSelf: 'center',
-                    height: 100,
-                    width: 100,
-                    resizeMode: 'center',
-                    marginBottom: 10,
-                }}
-                />}
+                ) : (
+                    localUri ? (
+                        <Image
+                            source={{ uri: localUri }}
+                            style={{
+                                alignSelf: 'center',
+                                height: 100,
+                                width: 100,
+                                resizeMode: 'center',
+                                marginBottom: 10,
+                            }}
+                        />
+                    ) : (
+                        <Image
+                            source={require('../assets/logo.png')}
+                            style={{
+                                alignSelf: 'center',
+                                height: 100,
+                                width: 100,
+                                resizeMode: 'center',
+                                marginBottom: 10,
+                            }}
+                        />
+                    )
+                )}
                 <DrawerItemList {...props}/>
             </DrawerContentScrollView>
         </View>

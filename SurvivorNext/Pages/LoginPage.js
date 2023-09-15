@@ -51,12 +51,13 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
 
     const {
         appColor,
-        setAppColor,
+        companyName,
     } = useAppContext();
 
     const color = appColor;
     const dynamicStyles = {
         title: {
+            marginTop: 40,
             marginBottom: 10,
             color: appColor,
             fontSize: 35,
@@ -81,6 +82,12 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
             marginBottom: 10,
             backgroundColor: appColor,
         },
+        company: {
+            fontSize: 40,
+            fontWeight: 'bold',
+            color: appColor,
+            textDecorationLine: 'underline',
+        },
     };
 
     const handleLoginPress = () => {
@@ -91,6 +98,7 @@ export default function LoginPage({ setIsSignedIn, setApiUser })
     return (
         <View style={styles.container}>
             <View style={styles.box}></View>
+            <Text style={dynamicStyles.company}>{companyName}</Text>
             <Text style={dynamicStyles.title}>LOGIN</Text>
             <StatusBar style="auto" />
                 <View style={dynamicStyles.inputView}>
@@ -139,7 +147,7 @@ const styles = StyleSheet.create({
     },
     box: {
         backgroundColor: "white",
-        height: "45%",
+        height: "60%",
         width: "85%",
         borderRadius: 20,
         position: 'absolute',

@@ -77,15 +77,6 @@ export default function AdminPanel() {
           </View>
         </Modal>
       )}
-      <TouchableWithoutFeedback onPress={handleImagePress}>
-        <View style={styles.Image}>
-          {selectedPhoto ? (
-            <Image source={{ uri: selectedPhoto }} style={styles.selectedImage} />
-          ) : (
-            <Text>Select a photo</Text>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
       <View style={styles.buttonRow}>
         {buttonColors.map((color, index) => (
           <TouchableOpacity
@@ -127,18 +118,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 16,
-  },
-  Image: {
-    width: 200,
-    height: 200,
-    backgroundColor: 'lightgray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    alignSelf: 'center',
-    marginTop: 20,
-    marginBottom: 100,
-    justifyContent: 'center',
   },
   TextInput: {
     height: 40,

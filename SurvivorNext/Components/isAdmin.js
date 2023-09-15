@@ -18,7 +18,7 @@ export default async function isAdmin(apiUser) {
             return false;
         }
     } catch (error) {
-        console.error(error);
+        console.log(error);
         return (false);
     }
 }

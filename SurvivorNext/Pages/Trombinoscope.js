@@ -43,7 +43,7 @@ export default function TrombinoscopeScreen({ navigation, route }) {
       setInfos(response.data);
       setDataSearch(response.data);
     } catch (error) {
-      console.error(error.accept);
+      console.log(error.accept);
       return [];
     }
   };

@@ -25,7 +25,7 @@ const FactApp = () => {
             setFact(response.data.text);
             setModalVisible(true);
         } catch (error) {
-            console.error('Error', error);
+            console.log('Error', error);
         }
     };
 

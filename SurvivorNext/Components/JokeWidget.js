@@ -46,7 +46,7 @@ const JokeApp = () => {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <Text style={styles.jokeText}>{joke}</Text>
+          <Text testID='joke-text' style={styles.jokeText}>{joke}</Text>
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => setModalVisible(false)}

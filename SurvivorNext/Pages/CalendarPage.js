@@ -56,6 +56,7 @@ export default function CalendarPage() {
                 todayTextColor: appColor,
                 arrowColor: appColor,
             }}
+            testID='calendar'
         />
     )
 }

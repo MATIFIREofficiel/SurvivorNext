@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, useWindowDimensions, TextInput } from "react-native";
 import axios from "axios";
-import React, { useState, useEffect, route } from 'react';
+import React, { useState, useEffect } from 'react';
+import Organigram from "./Organigram";
 
 function Item({ item, onPress, access_token}) {
 
@@ -28,6 +29,7 @@ export default function TrombinoscopeScreen({ navigation, route }) {
   const [infos, setInfos] = useState([]);
   const [search, setSearch] = useState('');
   const {access_token} = route.params;
+  const [isOrganigram, setIsOrganigram] = useState(true);
 
   const getListEmployeesID = async () => {
     const url = process.env.REACT_APP_API_URL;
@@ -71,18 +73,32 @@ export default function TrombinoscopeScreen({ navigation, route }) {
 
   return (
     <View style={styles.homePage}>
-      <TextInput style={styles.searchText}
-        placeholder="Search by name or username"
-        value={search}
-        onChangeText={filterEmployee}
-        defaultValue=''/>
-      <FlatList
-        refreshing={true}
-        data={dataSearch}
-        renderItem={renderItem}
-        numColumns={3}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={{flexDirection: 'row'}}>
+        <TextInput style={styles.searchText}
+          placeholder="Search by name or username"
+          value={search}
+          onChangeText={filterEmployee}
+          defaultValue=''/>
+        <TouchableOpacity
+          onPress={() => {setIsOrganigram(!isOrganigram)}}
+          style={{width:50, height: 50, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey', marginVertical: 10,}}
+        >
+          <Image style={{width: 40, height: 40}} 
+          source={require('./../assets/chart.png')} />
+        </TouchableOpacity>
+      </View>
+      {isOrganigram
+        ? <FlatList
+          refreshing={true}
+          data={dataSearch}
+          renderItem={renderItem}
+          numColumns={3}
+          showsVerticalScrollIndicator={false}
+        />
+        : <View>
+            <Organigram access_token={access_token} navigation={navigation}/>
+          </View>
+      }
     </View>
   )
 }

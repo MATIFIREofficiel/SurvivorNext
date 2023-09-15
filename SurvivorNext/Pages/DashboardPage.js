@@ -18,13 +18,24 @@ function RenderItemScroll(props) {
   );
 };
 
-
 function UserWeatherWidget(props) {
   const inputRef = useRef(null);
   const [isWeatherClicked, setIsWeatherClicked] = useState(false);
 
   const Widget = props.item;
   const [city, setCity] = useState('paris');
+  const {
+    appColor,
+    userWidgets,
+    setUserWidgets,
+  } =useAppContext();
+
+  const removeWidget = (widgetToRemove) => {
+    setUserWidgets((prevUserWidgets) =>
+      prevUserWidgets.filter((widget) => widget !== widgetToRemove)
+    );
+  };
+
 
   const openKeyboard = (item) => {
     if (item.name === "WeatherWidget") {
@@ -49,6 +60,17 @@ function UserWeatherWidget(props) {
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
       }
 
+      {!isWeatherClicked &&
+        <View style={styles.buttonDel}>
+            <TouchableOpacity
+              style={{ width: 40, height: 40 }}
+              onPress={() => removeWidget(Widget)}
+            >
+              <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+            </TouchableOpacity>
+        </View>
+      }
+
       <TouchableOpacity onPress={() => openKeyboard(Widget)}>
         <Widget city={city} />
       </TouchableOpacity>
@@ -61,10 +83,9 @@ export default function DashboardPage() {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const bottomSheetRef = useRef(null);
-  const [userWidgets, setUserWidgets] = useState([]);
+
   const snapPoints = useMemo(() => ['35%', '80%'], []);
   const [widgets, setWidgets] = useState([WeatherWidget, CurrencyConverter, JokePage, FactPage]);
-
 
   const handleIndicatorPress = useCallback(() => {
     console.log('handleIndicatorPress');
@@ -87,13 +108,12 @@ export default function DashboardPage() {
     );
   }, [userWidgets]);
 
+
   const removeWidget = (widgetToRemove) => {
     setUserWidgets((prevUserWidgets) =>
       prevUserWidgets.filter((widget) => widget !== widgetToRemove)
     );
   };
-
-
 
   const handleCloseBottomSheet = useCallback(() => {
     bottomSheetRef.current.close();
@@ -114,6 +134,8 @@ export default function DashboardPage() {
 
   const {
     appColor,
+    userWidgets,
+    setUserWidgets,
   } = useAppContext();
 
   return (
@@ -122,16 +144,18 @@ export default function DashboardPage() {
         {userWidgets.map((item, index) => (
           <View style={styles.itemContainerScroll} key={index}>
             <View style={styles.buttonDel}>
-              <TouchableOpacity
-                style={{ width: 40, height: 40 }}
-                title="-"
-                onPress={() => removeWidget(item)}
-              >
-                <Ionicons name="remove-circle-outline" size={40} color={appColor} />
-              </TouchableOpacity>
+              {item.name !== "WeatherWidget" &&
+                <TouchableOpacity
+                  style={{ width: 40, height: 40 }}
+                  title="-"
+                  onPress={() => removeWidget(item)}
+                >
+                  <Ionicons name="remove-circle-outline" size={40} color={appColor} />
+                </TouchableOpacity>
+              }
             </View>
             {item.name === "WeatherWidget" ? (
-              <UserWeatherWidget item={item} />
+              <UserWeatherWidget item={item} userWidgets={userWidgets} />
             ) : (
               <RenderItemScroll item={item} />
             )}
